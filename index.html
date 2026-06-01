@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>History Match</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Lexend:wght@400;500;600&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="system-nav">
+  <a href="about.html" class="nav-link">About the Engine</a>
+  <button class="theme-toggle" onclick="toggleTheme()" id="theme-toggle-btn">Light System</button>
+</nav>
+
+<div class="matrix-container" id="quiz-card">
+
+  <div id="intro-screen">
+    <div class="intro-eyebrow">PROFILE CHECK v3.0</div>
+    <h1>Who Are You in History?</h1>
+    <p>Ten questions about your real habits, how you handle pressure, and what drives you. The engine compares your patterns against ten of history's most distinct minds and tells you who you actually are.</p>
+    <button class="action-btn" onclick="startQuiz()">Start Test</button>
+  </div>
+
+  <div id="quiz-screen" style="display: none;">
+    <div class="progress-bar-container">
+      <div class="progress-bar-fill" id="progress-bar"></div>
+    </div>
+    <div class="progress-row">
+      <div class="progress-label" id="progress-label">Question 1 of 10</div>
+      <div class="nav-actions-row">
+        <button class="ghost-btn" id="prev-btn" onclick="goToPrevQuestion()">Back</button>
+        <button class="ghost-btn" id="next-btn" onclick="goToNextQuestion()">Skip</button>
+      </div>
+    </div>
+    <h2 id="question-text">Loading...</h2>
+    <div class="options-grid" id="options-container"></div>
+  </div>
+
+  <div id="result-screen" style="display: none;">
+    <div class="intro-eyebrow">TEST RESULTS</div>
+    <h1>Your Match</h1>
+    <div class="terminal-view" id="terminal"></div>
+    <div id="archetype-result" style="display: none;"></div>
+    <button class="action-btn" onclick="resetQuiz()">Take Test Again</button>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
