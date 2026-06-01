@@ -3,64 +3,51 @@ let currentIdx = 0;
 let userSelections = [];
 let sortedResultProfiles = [];
 
-
-// track user data :) 
+// Track user devices for analytics
 async function trackDeviceVisit() {
-  if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
-    return;
-  }
-
+  if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") return;
   const payload = {
     page_path: window.location.pathname,
     screen_resolution: `${window.screen.width}x${window.screen.height}`,
     user_agent: navigator.userAgent
   };
-
   try {
-    // Hit the local Vercel API endpoint directly relative to this domain
     await fetch('/api/track', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
   } catch (err) {
-    console.error("> Analytics logging bypassed quietly.");
+    // Fail quietly
   }
 }
 
+// Start sequence when page is ready
 document.addEventListener("DOMContentLoaded", () => {
   trackDeviceVisit();
+  // Read the current attribute set by the HTML head script
+  const theme = document.documentElement.getAttribute("data-theme") || "light";
+  updateThemeButtonText(theme);
+  if (document.getElementById("quiz-screen")) resetQuiz();
 });
 
 
 
-// ─── INITIALIZATION ENGINE ────────────────────────────────────────────────────
-document.addEventListener("DOMContentLoaded", () => {
-  const currentActiveTheme = document.documentElement.getAttribute("data-theme") || "dark";
-  updateThemeButtonText(currentActiveTheme);
-  
-  if (document.getElementById("quiz-screen")) {
-    resetQuiz();
-  }
-});
-
+// Theme switcher
 function toggleTheme() {
   const root = document.documentElement;
-  const currentTheme = root.getAttribute("data-theme");
-  const newTheme = currentTheme === "dark" ? "light" : "dark";
-  
-  root.setAttribute("data-theme", newTheme);
-  localStorage.setItem("theme", newTheme);
-  updateThemeButtonText(newTheme);
+  const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+  root.setAttribute("data-theme", next);
+  localStorage.setItem("theme", next);
+  updateThemeButtonText(next);
 }
 
 function updateThemeButtonText(theme) {
   const btn = document.getElementById("theme-toggle-btn");
-  if (!btn) return;
-  btn.textContent = theme === "dark" ? "Light System" : "Dark System";
+  if (btn) btn.textContent = theme === "dark" ? "Light Mode" : "Dark Mode";
 }
 
-// ─── FIGURES DATABASE ────────────────────────────────────────────────────────
+// Profiles list
 const figures = {
   einstein: {
     name: "Albert Einstein",
@@ -113,14 +100,14 @@ const figures = {
     image: "images/john-d-rockefeller.jpg",
     pos: "Inhuman patience, long-term system thinking",
     neg: "Emotional coldness, seeing people as moving parts in a plan",
-    desc: "You play a much longer game than almost everyone around you. While others react, you watch, position, and wait. You see chaos as a structural opportunity and treat relationships like systems that need maintaining. Just remember that the people inside those systems are not resources.",
+    desc: "You play a much longer game than almost everyone around you. While others react, you watch, position, and wait. You see chaos as a chance to build something steady and treat relationships like systems that need tending. Just remember that the people inside those systems are not resources.",
     fact: "During major oil market crashes, while competitors panicked and sold, Rockefeller calmly calculated their desperation and bought them out at deep discounts. He openly said their panic was his greatest competitive advantage. His biographer described his self-control as almost eerie — he never made a decision while emotional."
   },
   musk: {
     name: "Elon Musk",
     subtitle: "The Risk Taker",
     image: "images/elon-musk.jpeg",
-    pos: "First-principles thinking, moving fast on impossible problems",
+    pos: "Fresh thinking, moving fast on problems others gave up on",
     neg: "Chaotic personal wake, demanding the unreasonable from others",
     desc: "You want to fix the problems everyone else agreed were unsolvable. You move at a speed that disorients people around you, and you have a habit of declaring things possible before you've fully checked the math. Your best ideas and your biggest messes come from exactly the same place.",
     fact: "When SpaceX nearly ran out of money in 2008, Musk put his last personal reserves into a fourth rocket launch rather than accept failure — it succeeded. He has described running multiple companies simultaneously while barely sleeping as normal. Teams working under him report both breakthrough results and extreme psychological pressure."
@@ -129,8 +116,8 @@ const figures = {
     name: "Napoleon Bonaparte",
     subtitle: "The Outsider Who Rewrote the Rules",
     image: "images/napoleon-bonaparte.jpeg",
-    pos: "Strategic brilliance, turning outsider status into a weapon",
-    neg: "Ego that overrides good judgment, catastrophic overreach",
+    pos: "Sharp strategy, turning being the underdog into an advantage",
+    neg: "Ego that overrides good judgment, pushing too far past the limit",
     desc: "You have always felt slightly outside the group that holds power — and instead of accepting that, you used it as fuel. You are not just trying to win; you are trying to redesign the whole system. Your strength is that you outthink people who are playing by rules you've already discarded. Your weakness is that you sometimes keep going long after the smart move was to stop.",
     fact: "Napoleon was Corsican — culturally French but never quite accepted as an insider by Parisian elites. He responded by outworking and outthinking every aristocrat in his path. He rewrote the legal code of France, reorganized its education system, and restructured its banking — all while running military campaigns. He fell not from lack of genius but from an inability to accept that Moscow was a limit."
   },
@@ -147,21 +134,21 @@ const figures = {
     name: "Steve Jobs",
     subtitle: "The Aesthetic Tyrant",
     image: "images/steve-jobs.jpeg",
-    pos: "Merging beauty with function, refusing to accept 'good enough'",
+    pos: "Merging beauty with function, refusing to accept good enough",
     neg: "Brutal to people around him, blind spots in personal relationships",
     desc: "You believe that how something looks and feels is just as important as whether it works — and you hold that standard for everything you touch. You don't tolerate the gap between your vision and the reality in front of you. People either rise to meet your standard or get moved out of the way. The cost of that is real, and the people who paid it weren't always the ones who deserved to.",
-    fact: "Jobs was notoriously controlling about details most people consider invisible — the color of internal circuit boards no customer would ever see, the exact radius of the corners on product packaging. Former Apple employees described his feedback style as either 'this is the greatest thing' or 'this is absolute garbage' with no middle ground. He also denied paternity of his first daughter for years while simultaneously naming a product line after her."
+    fact: "Jobs was notoriously controlling about details most people consider invisible — the color of internal circuit boards no customer would ever see, the exact radius of the corners on product packaging. Former Apple employees described his feedback style as either this is the greatest thing or this is absolute garbage with no middle ground. He also denied paternity of his first daughter for years while simultaneously naming a product line after her."
   }
 };
 
-// ─── QUESTION POOL ────────────────────────────────────────────────────────────
+// Questions list
 const questionPool = [
   {
     q: "A project you have been working on for weeks hits a serious wall. What actually happens next?",
     a: [
       "I sit with it quietly until I understand exactly what broke. I can't move on without knowing why.",
-      "I pivot immediately. The failure is data. What is the fastest route around it?",
-      "I lose motivation. Something newer and more interesting has already started pulling my attention.",
+      "I switch directions immediately. The setback is information. What is the fastest way around it?",
+      "I lose steam. Something newer and more interesting has already started pulling my attention.",
       "I don't stop. I work through the night if I have to. Stopping feels like losing."
     ],
     fx: [
@@ -172,7 +159,7 @@ const questionPool = [
     ]
   },
   {
-    q: "Someone with more status or authority tells you your idea is wrong in front of others. What do you do?",
+    q: "Someone with more authority tells you your idea is wrong in front of others. What do you do?",
     a: [
       "I go quiet in the moment. I take notes. I come back later with something they can't argue with.",
       "I push back on the spot. If I believe I'm right, I say so directly regardless of who they are.",
@@ -222,7 +209,7 @@ const questionPool = [
       "I work within it longer than most people would. I learn its rules well enough to use them better than anyone.",
       "I find a way around it entirely. I don't waste energy fighting what I can simply bypass.",
       "I get frustrated but keep my head down and push through by sheer endurance.",
-      "I start building a new system to replace the broken one."
+      "I start building something new to replace what's broken."
     ],
     fx: [
       () => { figures.napoleon.score+=3; figures.rockefeller.score+=3; },
@@ -252,7 +239,7 @@ const questionPool = [
       "Long, uninterrupted solo sessions. I go deep and surface when it's done.",
       "Slow and steady, every day, with no big bursts. Consistency over intensity.",
       "Intense but messy. I jump between layers, break things, rebuild, and somehow it comes together.",
-      "Obsessively detailed. I will redo the same small element repeatedly until it matches what I see in my head."
+      "Obsessively detailed. I redo the same small part repeatedly until it matches what I see in my head."
     ],
     fx: [
       () => { figures.einstein.score+=3; figures.tesla.score+=3; figures.curie.score+=1; },
@@ -294,10 +281,10 @@ const questionPool = [
   {
     q: "Your close friend tells you that you are difficult to really know. Your reaction is:",
     a: [
-      "That sounds right. I keep most of my interior life to myself and that is not an accident.",
+      "That sounds right. I keep most of my inner life to myself and that is not an accident.",
       "It surprises me. I think I am open — I just show it through what I make, not what I say.",
-      "I take it seriously. If someone I trust is telling me this, I need to understand what I'm doing.",
-      "I already knew. I have accepted that what I'm building requires a distance that not everyone will like."
+      "I take it seriously. If someone I trust is saying this, I need to understand what I'm doing.",
+      "I already knew. What I'm building requires a distance that not everyone will like."
     ],
     fx: [
       () => { figures.einstein.score+=3; figures.tesla.score+=3; figures.rockefeller.score+=2; },
@@ -310,9 +297,9 @@ const questionPool = [
     q: "How do you handle a plan when conditions change completely mid-way through?",
     a: [
       "I adapt fast and move. The original plan was always just a starting point.",
-      "I pause, rethink the whole structure, then recommit to a new path deliberately.",
-      "I struggle. I had everything calibrated and the disruption genuinely throws me.",
-      "I keep going on the original path longer than I should, hoping conditions will correct."
+      "I pause, rethink the whole thing, then commit to a new direction deliberately.",
+      "I struggle. I had everything figured out and the disruption genuinely throws me.",
+      "I keep going on the original path longer than I should, hoping things will correct themselves."
     ],
     fx: [
       () => { figures.musk.score+=3; figures.alexander.score+=3; figures.napoleon.score+=2; },
@@ -325,8 +312,8 @@ const questionPool = [
     q: "Think back to school. What kind of student were you really?",
     a: [
       "I only engaged with subjects that actually interested me. The rest I ignored or barely passed.",
-      "I was consistent and disciplined — maybe not the most naturally gifted, but I outworked everyone.",
-      "I started strong, got distracted, and scraped through on last-minute intensity.",
+      "Consistent and disciplined — maybe not the most naturally gifted, but I outworked everyone.",
+      "I started strong, got distracted, and scraped through on last-minute energy.",
       "I pushed back on teachers I disagreed with and had strong opinions about how things should be taught."
     ],
     fx: [
@@ -337,12 +324,12 @@ const questionPool = [
     ]
   },
   {
-    q: "What does your relationship to beauty and aesthetics actually look like?",
+    q: "What does your relationship to beauty and how things look actually mean to you?",
     a: [
       "I care deeply. How something looks and feels matters as much as whether it works.",
-      "I appreciate it but it doesn't drive my decisions. Function comes first.",
+      "I appreciate it but it doesn't drive my decisions. How it works comes first.",
       "I have strong personal taste but mostly keep it to myself — it's a private thing.",
-      "I find it interesting but my real passion is in systems, structures, and how things connect."
+      "My real interest is in how things connect and fit together as a whole."
     ],
     fx: [
       () => { figures.jobs.score+=4; figures.jackson.score+=3; figures.vinci.score+=2; },
@@ -353,45 +340,39 @@ const questionPool = [
   }
 ];
 
-
-// ─── QUIZ NAV MECHANICS ────────────────────────────────────────────────────────
+// Start the quiz
 function startQuiz() {
+  for (let k in figures) figures[k].score = 0;
   activeQuestions = [...questionPool].sort(() => Math.random() - 0.5).slice(0, 10);
   currentIdx = 0;
   userSelections = new Array(activeQuestions.length).fill(null);
-  
   document.getElementById('intro-screen').style.display = 'none';
   document.getElementById('quiz-screen').style.display = 'block';
   renderQuestion();
 }
 
+// Render active question
 function renderQuestion() {
-  if (currentIdx >= activeQuestions.length) { 
-    showResults(); 
-    return; 
-  }
-  
+  if (currentIdx >= activeQuestions.length) { showResults(); return; }
+
   document.getElementById('prev-btn').disabled = (currentIdx === 0);
-  document.getElementById('next-btn').textContent = (userSelections[currentIdx] !== null) ? "Next" : "Skip";
+  document.getElementById('next-btn').textContent = userSelections[currentIdx] !== null ? "Next" : "Skip";
 
   const pct = (currentIdx / activeQuestions.length) * 100;
   document.getElementById('progress-bar').style.width = `${pct}%`;
-  document.getElementById('progress-label').textContent = `Verification Vector ${currentIdx + 1}/${activeQuestions.length}`;
-  
+  document.getElementById('progress-label').textContent = `Question ${currentIdx + 1} of ${activeQuestions.length}`;
+
   const q = activeQuestions[currentIdx];
   document.getElementById('question-text').textContent = q.q;
-  
+
   const container = document.getElementById('options-container');
   container.innerHTML = '';
-  
-  q.a.forEach((answerText, index) => {
+  q.a.forEach((text, i) => {
     const btn = document.createElement('button');
     btn.className = 'option-row-btn';
-    if (userSelections[currentIdx] === index) {
-      btn.classList.add('selected');
-    }
-    btn.textContent = answerText;
-    btn.onclick = () => selectOption(index);
+    if (userSelections[currentIdx] === i) btn.classList.add('selected');
+    btn.textContent = text;
+    btn.onclick = () => selectOption(i);
     container.appendChild(btn);
   });
 }
@@ -399,48 +380,35 @@ function renderQuestion() {
 function selectOption(index) {
   userSelections[currentIdx] = index;
   renderQuestion();
-  
   setTimeout(() => {
-    if (currentIdx === userSelections.length - 1) {
-      showResults();
-    } else {
-      currentIdx++;
-      renderQuestion();
-    }
+    if (currentIdx === userSelections.length - 1) showResults();
+    else { currentIdx++; renderQuestion(); }
   }, 240);
 }
 
 function goToPrevQuestion() {
-  if (currentIdx > 0) {
-    currentIdx--;
-    renderQuestion();
-  }
+  if (currentIdx > 0) { currentIdx--; renderQuestion(); }
 }
 
 function goToNextQuestion() {
-  if (currentIdx < activeQuestions.length - 1) {
-    currentIdx++;
-    renderQuestion();
-  } else {
-    showResults();
-  }
+  if (currentIdx < activeQuestions.length - 1) { currentIdx++; renderQuestion(); }
+  else showResults();
 }
 
-// ─── PROCEDURAL NARRATIVE CONTROLLER ──────────────────────────────────────────
+// Process results loading logs
 function showResults() {
   document.getElementById('quiz-screen').style.display = 'none';
   document.getElementById('result-screen').style.display = 'block';
-  
+
   const terminal = document.getElementById('terminal');
   terminal.style.display = 'block';
   terminal.textContent = '';
-  
+
   const logs = [
-    "Compiling configuration selection logs...",
-    "Searching matrix alignments...",
-    "Isolating closest relative archetype..."
+    "Reading your answers...",
+    "Comparing against all ten profiles...",
+    "Finding your closest match..."
   ];
-  
   let line = 0;
   function printLine() {
     if (line < logs.length) {
@@ -448,36 +416,33 @@ function showResults() {
       line++;
       setTimeout(printLine, 280);
     } else {
-      setTimeout(calculateProceduralArchetype, 150);
+      setTimeout(calculateResult, 150);
     }
   }
   printLine();
 }
 
-function calculateProceduralArchetype() {
+// Score parsing logic
+function calculateResult() {
   for (let k in figures) figures[k].score = 0;
-  
-  let answeredCount = 0;
-  userSelections.forEach((selectedIndex, qIdx) => {
-    if (selectedIndex !== null) {
-      activeQuestions[qIdx].fx[selectedIndex]();
-      answeredCount++;
-    }
+
+  let answered = 0;
+  userSelections.forEach((sel, qi) => {
+    if (sel !== null) { activeQuestions[qi].fx[sel](); answered++; }
   });
 
   const terminal = document.getElementById('terminal');
 
-  if (answeredCount === 0) {
-    terminal.textContent += `\n>> Evaluation stalled: Zero system inputs.\n`;
-    const resultBox = document.getElementById('archetype-result');
-    resultBox.innerHTML = `
+  if (answered === 0) {
+    terminal.textContent += `\n> No answers recorded.\n`;
+    const rb = document.getElementById('archetype-result');
+    rb.style.display = 'block';
+    rb.innerHTML = `
       <div class="procedural-step-block">
-        <h1>Empty Profile Vector</h1>
-        <p class="narrative-prose">You managed to skip every single diagnostic question. No metrics were generated, leaving your historical tracking pattern completely void.</p>
-        <button class="action-trigger" onclick="resetQuiz()">Restart System Matrix</button>
-      </div>
-    `;
-    resultBox.style.display = 'block';
+        <h1>Nothing to work with</h1>
+        <p class="narrative-prose">You skipped every question. Go back and answer at least a few — the result is only as good as what you put in.</p>
+        <button class="action-trigger" onclick="resetQuiz()">Start over</button>
+      </div>`;
     return;
   }
 
@@ -486,146 +451,155 @@ function calculateProceduralArchetype() {
     .sort((a, b) => b.score - a.score);
 
   terminal.style.display = 'none';
-  const resultBox = document.getElementById('archetype-result');
-  resultBox.innerHTML = '';
-  resultBox.style.display = 'block';
-
-  renderResultPhaseOne();
+  const rb = document.getElementById('archetype-result');
+  rb.innerHTML = '';
+  rb.style.display = 'block';
+  renderPhaseOne();
 }
 
-// PHASE 1: The Identity Reveal
-// PHASE 1: The Identity Reveal
-function renderResultPhaseOne() {
+// Phase 1: Name and percentage matching
+function renderPhaseOne() {
   const top = sortedResultProfiles[0];
-  const totalWeight = sortedResultProfiles.reduce((sum, f) => sum + f.score, 0);
-  const matchPct = Math.min(Math.round((top.score / (totalWeight || 1)) * 320), 99);
+  const total = sortedResultProfiles.reduce((s, f) => s + f.score, 0);
+  const matchPct = Math.min(Math.round((top.score / (total || 1)) * 320), 99);
 
-  const container = document.getElementById('archetype-result');
-  
-  const step1 = document.createElement('div');
-  step1.className = 'procedural-step-block';
-  step1.id = 'result-phase-1';
-  step1.innerHTML = `
+  const rb = document.getElementById('archetype-result');
+  const block = document.createElement('div');
+  block.className = 'procedural-step-block';
+  block.id = 'result-phase-1';
+
+  const burstLines = Array.from({ length: 12 }, (_, i) => {
+    const a = (i / 12) * 2 * Math.PI;
+    const x1 = (80 + Math.cos(a) * 54).toFixed(1);
+    const y1 = (80 + Math.sin(a) * 54).toFixed(1);
+    const x2 = (80 + Math.cos(a) * 74).toFixed(1);
+    const y2 = (80 + Math.sin(a) * 74).toFixed(1);
+    return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="var(--accent)" stroke-width="1" opacity="0.25"/>`;
+  }).join('');
+
+  block.innerHTML = `
     <div class="profile-identity-lockup">
-      <span class="profile-percentage">${matchPct}% ALIGNMENT DETECTED</span>
-      <img src="${top.image}" alt="${top.name}" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin: 1.5rem 0; border: 2px solid var(--accent, #ff5722);">
+      <div class="photo-burst-wrap" aria-hidden="true">
+        <svg class="photo-burst" width="160" height="160" viewBox="0 0 160 160" fill="none">
+          ${burstLines}
+          <circle cx="80" cy="80" r="52" stroke="var(--accent)" stroke-width="1"
+            stroke-dasharray="3 6" opacity="0.18"/>
+        </svg>
+        <img src="${top.image}" alt="${top.name}" onerror="this.style.display='none'">
+      </div>
+
+      <span class="profile-percentage">${matchPct}% match</span>
       <h1>${top.name}</h1>
       <div class="profile-subtitle">${top.subtitle}</div>
     </div>
-    
-    <button class="action-trigger" onclick="renderResultPhaseTwo()">
-      <span>Analyze Operational Matrix</span>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+
+    <button class="action-trigger" onclick="renderPhaseTwo()">
+      <span>See what this means</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
     </button>
   `;
-  
-  container.appendChild(step1);
+
+  rb.appendChild(block);
 }
 
-// PHASE 2: The Core Analysis & Traits Blueprint
-function renderResultPhaseTwo() {
-  const p1Button = document.querySelector('#result-phase-1 .action-trigger');
-  if (p1Button) p1Button.style.display = 'none';
-
+// Phase 2: Breakdown and traits
+function renderPhaseTwo() {
+  document.querySelector('#result-phase-1 .action-trigger').style.display = 'none';
   const top = sortedResultProfiles[0];
-  const container = document.getElementById('archetype-result');
+  const rb = document.getElementById('archetype-result');
 
-  const step2 = document.createElement('div');
-  step2.className = 'procedural-step-block';
-  step2.id = 'result-phase-2';
-  step2.innerHTML = `
+  const block = document.createElement('div');
+  block.className = 'procedural-step-block';
+  block.id = 'result-phase-2';
+  block.innerHTML = `
     <p class="narrative-prose">${top.desc}</p>
 
     <div class="traits-minimal-grid">
       <div>
-        <span class="trait-entry-label pos">Strategic Strengths</span>
+        <span class="trait-entry-label pos">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"
+            style="display:inline;vertical-align:middle;margin-right:5px;">
+            <circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/>
+            <polyline points="4 6 5.5 7.5 8 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Where you are strong
+        </span>
         <div class="trait-entry-value">${top.pos}</div>
       </div>
       <div>
-        <span class="trait-entry-label neg">System Vulnerabilities</span>
+        <span class="trait-entry-label neg">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"
+            style="display:inline;vertical-align:middle;margin-right:5px;">
+            <circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/>
+            <line x1="4" y1="4" x2="8" y2="8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            <line x1="8" y1="4" x2="4" y2="8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          Where you are vulnerable
+        </span>
         <div class="trait-entry-value">${top.neg}</div>
       </div>
     </div>
 
-    <button class="action-trigger" onclick="renderResultPhaseThree()">
-      <span>Access Historical Blueprint Logs</span>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    <button class="action-trigger" onclick="renderPhaseThree()">
+      <span>Read the real story</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
     </button>
   `;
 
-  container.appendChild(step2);
-  window.scrollTo({ top: step2.offsetTop - 40, behavior: 'smooth' });
+  rb.appendChild(block);
+  block.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-// PHASE 3: Historical Fact, Scores & Re-evaluation Trigger
-function renderResultPhaseThree() {
-  const p2Button = document.querySelector('#result-phase-2 .action-trigger');
-  if (p2Button) p2Button.style.display = 'none';
-
+// Phase 3: Historical Fact and total points
+function renderPhaseThree() {
+  document.querySelector('#result-phase-2 .action-trigger').style.display = 'none';
   const top = sortedResultProfiles[0];
-  const primeHighScore = top.score;
-  const container = document.getElementById('archetype-result');
+  const rb = document.getElementById('archetype-result');
 
-  const step3 = document.createElement('div');
-  step3.className = 'procedural-step-block';
-  step3.innerHTML = `
+  const block = document.createElement('div');
+  block.className = 'procedural-step-block';
+  block.innerHTML = `
     <div class="historical-context-card">
-      <span class="system-meta" style="margin-bottom:0.5rem;">HISTORICAL CONTEXT DECRYPTION</span>
+      <span class="system-meta" style="margin-bottom:0.5rem;">The real story</span>
       ${top.fact}
     </div>
 
-    <div style="margin-bottom: 3.5rem;">
-      <span class="system-meta" style="margin-bottom:0.75rem;">MATRIX WEIGHT MATRIX DISTRIBUTION</span>
+    <div style="margin-bottom: 3rem;">
+      <span class="system-meta" style="margin-bottom: 0.75rem;">All scores</span>
       <div class="scores-minimal-chart">
         ${sortedResultProfiles.map(f => `
-          <span class="score-tag-item${f.score === primeHighScore ? ' active-high' : ''}">
-            ${f.name.split(' ').pop()}: ${f.score}pt
-          </span>
-        `).join('')}
+          <span class="score-tag-item${f.score === top.score ? ' active-high' : ''}">
+            ${f.name.split(' ').pop()}: ${f.score}
+          </span>`).join('')}
       </div>
     </div>
 
-    <button class="action-trigger" onclick="resetQuiz()" style="border-color: var(--accent); color: var(--accent);">
-      <span>Re-Run Diagnostic Matrix</span>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+    <button class="action-trigger" onclick="resetQuiz()"
+      style="border-color: var(--accent); color: var(--accent);">
+      <span>Take it again</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21.5 2v6h-6"/>
+        <path d="M21.34 15.57a10 10 0 1 1-.57-8.38L21.5 8"/>
+      </svg>
     </button>
   `;
 
-  container.appendChild(step3);
-  window.scrollTo({ top: step3.offsetTop - 40, behavior: 'smooth' });
+  rb.appendChild(block);
+  block.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
+// Reset view states
 function resetQuiz() {
   document.getElementById('result-screen').style.display = 'none';
-  document.getElementById('archetype-result').style.display = 'none';
-  document.getElementById('archetype-result').innerHTML = '';
+  const rb = document.getElementById('archetype-result');
+  rb.style.display = 'none';
+  rb.innerHTML = '';
   document.getElementById('intro-screen').style.display = 'block';
 }
-
-// ─── SUPABASE DEVICE ANALYTICS TRACKER ────────────────────────────────────────
-async function trackDeviceVisit() {
-  if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
-    return;
-  }
-
-  const payload = {
-    page_path: window.location.pathname,
-    screen_resolution: `${window.screen.width}x${window.screen.height}`,
-    user_agent: navigator.userAgent
-  };
-
-  try {
-    await fetch('/api/track', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-  } catch (err) {
-    console.error("> Analytics logging bypassed quietly.");
-  }
-}
-
-// Fire tracking sequence when DOM is prepared
-document.addEventListener("DOMContentLoaded", () => {
-  trackDeviceVisit();
-});

@@ -12,39 +12,198 @@
 <body>
   <script>
     (function() {
-      const savedTheme = localStorage.getItem("theme") || "dark";
+      // Set to 'light' by default, or use the saved choice if it exists
+      const savedTheme = localStorage.getItem("theme") || "light";
       document.documentElement.setAttribute("data-theme", savedTheme);
     })();
   </script>
 
-<nav class="system-nav">
-  <a href="index.html" class="nav-link">← Return to Engine</a>
-  <button class="theme-toggle" onclick="toggleTheme()" id="theme-toggle-btn">Light System</button>
-</nav>
+  <nav class="system-nav">
+    <a href="index.html" class="nav-link">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="19" y1="12" x2="5" y2="12"/>
+        <polyline points="12 19 5 12 12 5"/>
+      </svg>
+      Back to test
+    </a>
+    <button class="theme-toggle" onclick="toggleTheme()" id="theme-toggle-btn">Light Mode</button>
+  </nav>
 
-<main class="engine-layout">
-  
-  <section>
-    <div class="system-meta">MANIFESTO // DOCUMENTATION</div>
-    <h1>Behind the Matrix</h1>
-    
-    <p class="narrative-prose">This engine was built to strip away the complex, clinical jargon of typical personality tests and replace it with something tangible: historical reality.</p>
-    
-    <p class="narrative-prose">Instead of assigning you an arbitrary four-letter code or sorting you into generic buckets, the system tracks how you balance core trade-offs, such as isolation versus execution, or aesthetic perfectionism versus pure functional speed, and matches your raw operational strategy against ten of history's most uncompromising minds.</p>
+  <main class="engine-layout">
 
-    <h2 style="margin-top: 2rem;">The Concept</h2>
-    <p class="narrative-prose">Every decision matrix and question vector is designed around real behavior patterns recorded in historical biographies, letters, and journals. The objective isn't to tell you who you should be, but to highlight which historical perspective matches the way you handle reality right now.</p>
+    <section class="about-hero">
+      <div class="system-meta">How it works</div>
+      <h1>Behind the Choices</h1>
+      <p class="narrative-prose">A simple, plain explanation of this test with no technical jargon or complicated details.</p>
+    </section>
 
-    <h2 style="margin-top: 2rem;">The Studio</h2>
-    <p class="narrative-prose">Engineered with intention and organic constraints by <strong>Malix Works</strong>. Built to stay out of your way, clean, lightweight, and completely human-scaled.</p>
+    <!-- Visual Process Map -->
+    <section class="about-flow">
 
-    <div class="system-meta" style="margin-top: 4rem; border-top: 1px solid var(--border, #333); padding-top: 1rem;">
-      SYSTEM STATUS: STABLE // VERSION 3.0.0
-    </div>
-  </section>
+      <div class="flow-step">
+        <div class="flow-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <div class="flow-text">
+          <h3>1. You answer ten questions</h3>
+          <p>Each question is about a normal, daily situation. How you organize your day, buy things, deal with offenses, or react to set backs. There are no trick questions. Just choose the one that feels most natural to you.</p>
+        </div>
+      </div>
 
-</main>
+      <div class="flow-connector" aria-hidden="true">
+        <svg width="2" height="40" viewBox="0 0 2 40">
+          <line x1="1" y1="0" x2="1" y2="40" stroke="var(--bg-border)" stroke-width="2" stroke-dasharray="3 4"/>
+        </svg>
+      </div>
 
-<script src="script.js"></script>
+      <div class="flow-step">
+        <div class="flow-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"/>
+            <line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+        </div>
+        <div class="flow-text">
+          <h3>2. Your habits are weighed</h3>
+          <p>Every answer carries different points. Some choices point to one specific person from history, while others share points across a few different profiles depending on how they lived their lives.</p>
+        </div>
+      </div>
+
+      <div class="flow-connector" aria-hidden="true">
+        <svg width="2" height="40" viewBox="0 0 2 40">
+          <line x1="1" y1="0" x2="1" y2="40" stroke="var(--bg-border)" stroke-width="2" stroke-dasharray="3 4"/>
+        </svg>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+        <div class="flow-text">
+          <h3>3. Find your historical match</h3>
+          <p>We show you who your choices align with out of ten distinct profiles. You will see how you match their real strengths, personal vulnerabilities, and a tiny story from their actual lives.</p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- The Ten Figures -->
+    <section class="about-figures-section">
+      <svg class="figures-deco" width="100%" height="60" viewBox="0 0 600 60" preserveAspectRatio="xMidYMid meet" fill="none" aria-hidden="true">
+        <circle cx="60"  cy="30" r="2.5" fill="var(--accent)" opacity="0.4"/>
+        <circle cx="130" cy="18" r="1.5" fill="var(--accent)" opacity="0.25"/>
+        <circle cx="200" cy="40" r="2"   fill="var(--accent)" opacity="0.35"/>
+        <circle cx="290" cy="22" r="3"   fill="var(--accent)" opacity="0.5"/>
+        <circle cx="370" cy="38" r="1.5" fill="var(--accent)" opacity="0.3"/>
+        <circle cx="450" cy="15" r="2"   fill="var(--accent)" opacity="0.4"/>
+        <circle cx="530" cy="35" r="2.5" fill="var(--accent)" opacity="0.3"/>
+        <line x1="60"  y1="30" x2="130" y2="18" stroke="var(--accent)" stroke-width="0.5" opacity="0.15"/>
+        <line x1="130" y1="18" x2="200" y2="40" stroke="var(--accent)" stroke-width="0.5" opacity="0.15"/>
+        <line x1="200" y1="40" x2="290" y2="22" stroke="var(--accent)" stroke-width="0.5" opacity="0.15"/>
+        <line x1="290" y1="22" x2="370" y2="38" stroke="var(--accent)" stroke-width="0.5" opacity="0.15"/>
+        <line x1="370" y1="38" x2="450" y2="15" stroke="var(--accent)" stroke-width="0.5" opacity="0.15"/>
+        <line x1="450" y1="15" x2="530" y2="35" stroke="var(--accent)" stroke-width="0.5" opacity="0.15"/>
+      </svg>
+
+      <h2>The Ten Profiles</h2>
+      <p class="narrative-prose" style="margin-top: 0.5rem; margin-bottom: 1.5rem;">Each person represents a completely different style of thinking and making decisions.</p>
+
+      <div class="figures-grid">
+        <div class="figure-pill">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
+          <span>Albert Einstein</span>
+        </div>
+        <div class="figure-pill">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
+          <span>Nikola Tesla</span>
+        </div>
+        <div class="figure-pill">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
+          <span>Michael Jackson</span>
+        </div>
+        <div class="figure-pill">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
+          <span>Leonardo da Vinci</span>
+        </div>
+        <div class="figure-pill">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
+          <span>Alexander the Great</span>
+        </div>
+        <div class="figure-pill">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
+          <span>John D. Rockefeller</span>
+        </div>
+        <div class="figure-pill">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
+          <span>Elon Musk</span>
+        </div>
+        <div class="figure-pill">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
+          <span>Napoleon Bonaparte</span>
+        </div>
+        <div class="figure-pill">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
+          <span>Marie Curie</span>
+        </div>
+        <div class="figure-pill">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
+          <span>Steve Jobs</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Privacy details -->
+    <section class="about-privacy">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1rem;">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+
+      <h2>What we collect</h2>
+      <p class="narrative-prose">Your personal test answers stay entirely inside your browser window. They are never sent to a database, stored, or linked to you.</p>
+      <p class="narrative-prose">The only things we track are basic layout specs: your screen resolution, browser style, and the visited page path. This purely helps us keep the elements looking clean and aligned. No names, no emails, and absolutely zero identifiers.</p>
+
+      <div class="privacy-list">
+        <div class="privacy-row">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>Your answers never leave your browser</span>
+        </div>
+        <div class="privacy-row">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>No signup, login, or accounts required</span>
+        </div>
+        <div class="privacy-row">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>Only anonymous screen and device stats are logged</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Craft Studio -->
+    <section class="about-studio">
+      <h2>The Craft</h2>
+      <p class="narrative-prose">Reworked with simple margins, organic styling, and plain spacing by <strong>Malix Craft</strong>.</p>
+      
+      <!--
+      DEVELOPER CREDIT — next system release
+      <div class="dev-credit">
+        <span class="system-meta">Creator</span>
+        <a href="https://linkedin.com/" class="nav-link" target="_blank" rel="noopener">Profile Details</a>
+      </div>
+      -->
+
+      <div class="about-footer-meta">
+        <span class="system-meta">System Version 3.0.0</span>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>

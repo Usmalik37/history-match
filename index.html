@@ -12,54 +12,66 @@
 <body>
   <script>
     (function() {
-      const savedTheme = localStorage.getItem("theme") || "dark";
+      // Set to 'light' by default, or use the saved choice if it exists
+      const savedTheme = localStorage.getItem("theme") || "light";
       document.documentElement.setAttribute("data-theme", savedTheme);
     })();
   </script>
 
-<nav class="system-nav">
-  <a href="about.html" class="nav-link">About the Engine</a>
-  <button class="theme-toggle" onclick="toggleTheme()" id="theme-toggle-btn">Light System</button>
-</nav>
+  <nav class="system-nav">
+    <a href="about.html" class="nav-link">About the Engine</a>
+    <button class="theme-toggle" onclick="toggleTheme()" id="theme-toggle-btn">Light Mode</button>
+  </nav>
 
-<main class="engine-layout">
+  <main class="engine-layout">
 
-  <section id="intro-screen">
-    <div class="system-meta">// ENGINE ACCESS v3.0.0</div>
-    <h1>Who are you in history?</h1>
-    <p class="narrative-prose">Ten questions about your real habits, how you handle pressure, and what drives your execution. The engine compares your patterns against ten of history's most distinct minds to isolate your exact operational archetype.</p>
-    <button class="action-trigger" onclick="startQuiz()">
-      <span>Initiate Assessment</span>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-    </button>
-  </section>
+    <!-- Start Page -->
+    <section id="intro-screen">
+      <svg class="intro-deco" width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <circle cx="32" cy="32" r="28" stroke="var(--accent)" stroke-width="1" stroke-dasharray="4 7" opacity="0.3"/>
+        <circle cx="32" cy="32" r="19" stroke="var(--accent)" stroke-width="1" stroke-dasharray="3 5" opacity="0.5"/>
+        <circle cx="32" cy="32" r="9"  fill="var(--accent)" opacity="0.15"/>
+        <circle cx="32" cy="32" r="4"  fill="var(--accent)" opacity="0.65"/>
+      </svg>
 
-  <section id="quiz-screen" style="display: none;">
-    <div class="quiz-metadata-row">
-      <span id="progress-label" class="system-meta">Verification Vector 1/10</span>
-      <div class="quiz-nav-actions">
-        <button id="prev-btn" class="text-link-btn" onclick="goToPrevQuestion()">Back</button>
-        <button id="next-btn" class="text-link-btn" onclick="goToNextQuestion()">Skip</button>
+      <h1>Who are you in history?</h1>
+      <p class="narrative-prose">Ten simple questions about how you behave in daily life, how you handle pressure, and what you do when things go wrong. Your habits will be matched against ten of history's most distinct minds.</p>
+      
+      <button class="action-trigger" onclick="startQuiz()">
+        <span>Start the test</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </button>
+    </section>
+
+    <!-- Quiz Question Page -->
+    <section id="quiz-screen" style="display: none;">
+      <div class="quiz-metadata-row">
+        <span id="progress-label" class="system-meta">Question 1 of 10</span>
+        <div class="quiz-nav-actions">
+          <button id="prev-btn" class="text-link-btn" onclick="goToPrevQuestion()">Back</button>
+          <button id="next-btn" class="text-link-btn" onclick="goToNextQuestion()">Skip</button>
+        </div>
       </div>
-    </div>
-    
-    <div class="minimal-progress-track">
-      <div class="minimal-progress-fill" id="progress-bar"></div>
-    </div>
+      
+      <div class="minimal-progress-track">
+        <div class="minimal-progress-fill" id="progress-bar"></div>
+      </div>
+      
+      <h2 id="question-text" class="quiz-question-heading">Loading question...</h2>
+      <div class="flat-options-list" id="options-container"></div>
+    </section>
 
-    <h2 id="question-text" class="quiz-question-heading">Loading system vector...</h2>
-    <div class="flat-options-list" id="options-container"></div>
-  </section>
+    <!-- Evaluation Results Page -->
+    <section id="result-screen" style="display: none;">
+      <div class="terminal-view" id="terminal"></div>
+      <div id="archetype-result" style="display: none;"></div>
+    </section>
 
-  <section id="result-screen" style="display: none;">
-    <div class="system-meta">// EVALUATION COMPLETE</div>
-    <div class="terminal-view" id="terminal"></div>
-    
-    <div id="archetype-result" style="display: none;"></div>
-  </section>
+  </main>
 
-</main>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
