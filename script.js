@@ -494,6 +494,7 @@ function calculateProceduralArchetype() {
 }
 
 // PHASE 1: The Identity Reveal
+// PHASE 1: The Identity Reveal
 function renderResultPhaseOne() {
   const top = sortedResultProfiles[0];
   const totalWeight = sortedResultProfiles.reduce((sum, f) => sum + f.score, 0);
@@ -507,6 +508,7 @@ function renderResultPhaseOne() {
   step1.innerHTML = `
     <div class="profile-identity-lockup">
       <span class="profile-percentage">${matchPct}% ALIGNMENT DETECTED</span>
+      <img src="${top.image}" alt="${top.name}" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin: 1.5rem 0; border: 2px solid var(--accent, #ff5722);">
       <h1>${top.name}</h1>
       <div class="profile-subtitle">${top.subtitle}</div>
     </div>
