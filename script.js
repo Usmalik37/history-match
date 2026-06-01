@@ -61,7 +61,7 @@ const figures = {
   einstein: {
     name: "Albert Einstein",
     subtitle: "The Systems Thinker",
-    image: "images/albert-einstein.jpg",
+    image: "images/albert-einstein.jpeg",
     pos: "Deep focus, finding hidden patterns in complex problems",
     neg: "Withdrawing from people, ignoring everyday responsibilities",
     desc: "You look at the big picture. When a problem catches your attention, you can't leave it alone — not to finish it, but because it genuinely fascinates you. You do your best thinking alone, in quiet, with no clock running. The risk is that the people around you sometimes feel like interruptions to a conversation you're already having with the problem.",
@@ -79,7 +79,7 @@ const figures = {
   jackson: {
     name: "Michael Jackson",
     subtitle: "The Dedicated Creator",
-    image: "images/michael-jackson.jpg",
+    image: "images/michael-jackson.jpeg",
     pos: "Relentless attention to craft, deep emotional expression",
     neg: "Escaping reality, fragile trust in other people",
     desc: "You feel things at an intensity most people around you can't track. You hold your own work to a standard that feels almost personal — anything less than your best feels like a lie. You are drawn to beauty as a way of making sense of the world. The danger is retreating into controlled environments when real life gets too chaotic.",
@@ -97,7 +97,7 @@ const figures = {
   alexander: {
     name: "Alexander the Great",
     subtitle: "The Bold Leader",
-    image: "images/alexander-the-great.jpg",
+    image: "images/alexander-the-great.jpeg",
     pos: "Explosive initiative, fearless execution under pressure",
     neg: "Restlessness that never switches off, burning people out",
     desc: "You don't wait for perfect conditions. You move, fix problems mid-flight, and figure out the details while things are already in motion. Sitting still genuinely makes you anxious. The risk is that you treat every challenge like a personal conquest — which exhausts the people who are supposed to be on your side.",
@@ -115,7 +115,7 @@ const figures = {
   musk: {
     name: "Elon Musk",
     subtitle: "The Risk Taker",
-    image: "images/elon-musk.jpg",
+    image: "images/elon-musk.jpeg",
     pos: "First-principles thinking, moving fast on impossible problems",
     neg: "Chaotic personal wake, demanding the unreasonable from others",
     desc: "You want to fix the problems everyone else agreed were unsolvable. You move at a speed that disorients people around you, and you have a habit of declaring things possible before you've fully checked the math. Your best ideas and your biggest messes come from exactly the same place.",
@@ -124,7 +124,7 @@ const figures = {
   napoleon: {
     name: "Napoleon Bonaparte",
     subtitle: "The Outsider Who Rewrote the Rules",
-    image: "images/napoleon-bonaparte.jpg",
+    image: "images/napoleon-bonaparte.jpeg",
     pos: "Strategic brilliance, turning outsider status into a weapon",
     neg: "Ego that overrides good judgment, catastrophic overreach",
     desc: "You have always felt slightly outside the group that holds power — and instead of accepting that, you used it as fuel. You are not just trying to win; you are trying to redesign the whole system. Your strength is that you outthink people who are playing by rules you've already discarded. Your weakness is that you sometimes keep going long after the smart move was to stop.",
@@ -133,7 +133,7 @@ const figures = {
   curie: {
     name: "Marie Curie",
     subtitle: "The Immovable Force",
-    image: "images/marie-curie.jpg",
+    image: "images/marie-curie.jpeg",
     pos: "Quiet relentless persistence, letting results do all the talking",
     neg: "Sacrificing personal health and relationships for the work",
     desc: "You don't make noise about what you're doing. You just keep going — through rejection, through doubt, through conditions that would make most people quit. You are not trying to impress anyone. You are trying to get it right. The risk is that you push so deep into the work that everything else — rest, relationships, your own body — becomes secondary.",
@@ -142,7 +142,7 @@ const figures = {
   jobs: {
     name: "Steve Jobs",
     subtitle: "The Aesthetic Tyrant",
-    image: "images/jobs.jpg",
+    image: "images/steve-jobs.jpeg",
     pos: "Merging beauty with function, refusing to accept 'good enough'",
     neg: "Brutal to people around him, blind spots in personal relationships",
     desc: "You believe that how something looks and feels is just as important as whether it works — and you hold that standard for everything you touch. You don't tolerate the gap between your vision and the reality in front of you. People either rise to meet your standard or get moved out of the way. The cost of that is real, and the people who paid it weren't always the ones who deserved to.",
