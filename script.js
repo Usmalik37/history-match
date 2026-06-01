@@ -1,3 +1,9 @@
+let activeQuestions = [];
+let currentIdx = 0;
+let userSelections = [];
+let sortedResultProfiles = [];
+
+
 // track user data :) 
 async function trackDeviceVisit() {
   if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
@@ -28,14 +34,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-
 // ─── INITIALIZATION ENGINE ────────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", () => {
-  // Read current configuration state assigned by the layout micro-script
   const currentActiveTheme = document.documentElement.getAttribute("data-theme") || "dark";
   updateThemeButtonText(currentActiveTheme);
   
-  if (document.getElementById("quiz-card")) {
+  if (document.getElementById("quiz-screen")) {
     resetQuiz();
   }
 });
@@ -56,7 +60,7 @@ function updateThemeButtonText(theme) {
   btn.textContent = theme === "dark" ? "Light System" : "Dark System";
 }
 
-// ─── FIGURES DATA BASE ────────────────────────────────────────────────────────
+// ─── FIGURES DATABASE ────────────────────────────────────────────────────────
 const figures = {
   einstein: {
     name: "Albert Einstein",
@@ -349,13 +353,8 @@ const questionPool = [
   }
 ];
 
-// ─── STATE ENGINE ─────────────────────────────────────────────────────────────
-let activeQuestions = [];
-let currentIdx = 0;
-let userSelections = [];
-let sortedResultProfiles = [];
-let activeTieIndex = 0;
 
+// ─── QUIZ NAV MECHANICS ────────────────────────────────────────────────────────
 function startQuiz() {
   activeQuestions = [...questionPool].sort(() => Math.random() - 0.5).slice(0, 10);
   currentIdx = 0;
@@ -377,7 +376,7 @@ function renderQuestion() {
 
   const pct = (currentIdx / activeQuestions.length) * 100;
   document.getElementById('progress-bar').style.width = `${pct}%`;
-  document.getElementById('progress-label').textContent = `Question ${currentIdx + 1} of ${activeQuestions.length}`;
+  document.getElementById('progress-label').textContent = `Verification Vector ${currentIdx + 1}/${activeQuestions.length}`;
   
   const q = activeQuestions[currentIdx];
   document.getElementById('question-text').textContent = q.q;
@@ -387,7 +386,7 @@ function renderQuestion() {
   
   q.a.forEach((answerText, index) => {
     const btn = document.createElement('button');
-    btn.className = 'option-btn';
+    btn.className = 'option-row-btn';
     if (userSelections[currentIdx] === index) {
       btn.classList.add('selected');
     }
@@ -408,7 +407,7 @@ function selectOption(index) {
       currentIdx++;
       renderQuestion();
     }
-  }, 280);
+  }, 240);
 }
 
 function goToPrevQuestion() {
@@ -427,6 +426,7 @@ function goToNextQuestion() {
   }
 }
 
+// ─── PROCEDURAL NARRATIVE CONTROLLER ──────────────────────────────────────────
 function showResults() {
   document.getElementById('quiz-screen').style.display = 'none';
   document.getElementById('result-screen').style.display = 'block';
@@ -436,10 +436,9 @@ function showResults() {
   terminal.textContent = '';
   
   const logs = [
-    "Checking choice history...",
-    "Finding matches across profiles...",
-    "Comparing patterns against 10 figures...",
-    "Finishing profile check..."
+    "Compiling configuration selection logs...",
+    "Searching matrix alignments...",
+    "Isolating closest relative archetype..."
   ];
   
   let line = 0;
@@ -447,39 +446,35 @@ function showResults() {
     if (line < logs.length) {
       terminal.textContent += `> ${logs[line]}\n`;
       line++;
-      setTimeout(printLine, 320);
+      setTimeout(printLine, 280);
     } else {
-      setTimeout(calculateArchetype, 200);
+      setTimeout(calculateProceduralArchetype, 150);
     }
   }
   printLine();
 }
 
-function calculateArchetype() {
+function calculateProceduralArchetype() {
   for (let k in figures) figures[k].score = 0;
   
-  let questionsAnsweredCount = 0;
+  let answeredCount = 0;
   userSelections.forEach((selectedIndex, qIdx) => {
     if (selectedIndex !== null) {
       activeQuestions[qIdx].fx[selectedIndex]();
-      questionsAnsweredCount++;
+      answeredCount++;
     }
   });
 
   const terminal = document.getElementById('terminal');
 
-  if (questionsAnsweredCount === 0) {
-    terminal.textContent += `\n> Error: Zero metrics detected.\n> Evaluation stalled.\n`;
+  if (answeredCount === 0) {
+    terminal.textContent += `\n>> Evaluation stalled: Zero system inputs.\n`;
     const resultBox = document.getElementById('archetype-result');
     resultBox.innerHTML = `
-      <div class="archetype-card">
-        <h2 style="color: var(--err);">Are you even human?</h2>
-        <p style="color: var(--ink-main); margin-bottom: 16px;">
-          You skipped literally every question. You have returned exactly zero personality data vectors to the system matrix. Even history's chaotic outliers had traits—you managed to render a total void.
-        </p>
-        <div class="app-disclaimer">
-          <strong>Disclaimer:</strong> This is an interactive experiment built for analysis and fun. It carries no clinical weight. If you'd like an authentic archetype assessment, try actually interacting with the prompts next time.
-        </div>
+      <div class="procedural-step-block">
+        <h1>Empty Profile Vector</h1>
+        <p class="narrative-prose">You managed to skip every single diagnostic question. No metrics were generated, leaving your historical tracking pattern completely void.</p>
+        <button class="action-trigger" onclick="resetQuiz()">Restart System Matrix</button>
       </div>
     `;
     resultBox.style.display = 'block';
@@ -490,110 +485,145 @@ function calculateArchetype() {
     .map(([k, v]) => ({ key: k, ...v }))
     .sort((a, b) => b.score - a.score);
 
-  activeTieIndex = 0; 
-  renderProfileCard();
+  terminal.style.display = 'none';
+  const resultBox = document.getElementById('archetype-result');
+  resultBox.innerHTML = '';
+  resultBox.style.display = 'block';
+
+  renderResultPhaseOne();
 }
 
-function renderProfileCard() {
-  const top = sortedResultProfiles[activeTieIndex];
-  const primeHighScore = sortedResultProfiles[0].score;
-  const currentScore = top.score;
-  
+// PHASE 1: The Identity Reveal
+function renderResultPhaseOne() {
+  const top = sortedResultProfiles[0];
   const totalWeight = sortedResultProfiles.reduce((sum, f) => sum + f.score, 0);
-  const matchPct = Math.min(Math.round((currentScore / (totalWeight || 1)) * 320), 99);
+  const matchPct = Math.min(Math.round((top.score / (totalWeight || 1)) * 320), 99);
 
-  const tieMates = sortedResultProfiles.filter(f => f.score === primeHighScore);
-  const isTiedCondition = tieMates.length > 1 && currentScore === primeHighScore;
+  const container = document.getElementById('archetype-result');
+  
+  const step1 = document.createElement('div');
+  step1.className = 'procedural-step-block';
+  step1.id = 'result-phase-1';
+  step1.innerHTML = `
+    <div class="profile-identity-lockup">
+      <span class="profile-percentage">${matchPct}% ALIGNMENT DETECTED</span>
+      <h1>${top.name}</h1>
+      <div class="profile-subtitle">${top.subtitle}</div>
+    </div>
+    
+    <button class="action-trigger" onclick="renderResultPhaseTwo()">
+      <span>Analyze Operational Matrix</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </button>
+  `;
+  
+  container.appendChild(step1);
+}
 
-  const terminal = document.getElementById('terminal');
-  const lines = terminal.textContent.split('\n');
-  const baseLogs = lines.filter(l => !l.startsWith('>>') && !l.includes('Match found') && !l.includes('Confidence'));
-  terminal.textContent = baseLogs.join('\n').trim() + `\n\n> Match found: ${top.name.toUpperCase()}\n> Confidence: ${matchPct}%\n`;
+// PHASE 2: The Core Analysis & Traits Blueprint
+function renderResultPhaseTwo() {
+  const p1Button = document.querySelector('#result-phase-1 .action-trigger');
+  if (p1Button) p1Button.style.display = 'none';
 
-  if (isTiedCondition) {
-    terminal.textContent += `>> Alert: Structural tie detected. Equal alignment profiles available.\n`;
-  }
+  const top = sortedResultProfiles[0];
+  const container = document.getElementById('archetype-result');
 
-  const resultBox = document.getElementById('archetype-result');
-  resultBox.innerHTML = `
-    <div class="archetype-card">
-      <div class="figure-header">
-        <img src="${top.image}" class="figure-img" alt="${top.name}" onerror="this.style.display='none'">
-        <div>
-          <span class="match-badge">${matchPct}% Match ${isTiedCondition ? '(Tied)' : ''}</span>
-          <h2 style="margin-bottom: 4px;">${top.name}</h2>
-          <h4 style="font-family:'Lexend',sans-serif;font-weight:500;color:var(--ink-muted);margin-bottom:0;font-size:0.9rem;">${top.subtitle}</h4>
-        </div>
+  const step2 = document.createElement('div');
+  step2.className = 'procedural-step-block';
+  step2.id = 'result-phase-2';
+  step2.innerHTML = `
+    <p class="narrative-prose">${top.desc}</p>
+
+    <div class="traits-minimal-grid">
+      <div>
+        <span class="trait-entry-label pos">Strategic Strengths</span>
+        <div class="trait-entry-value">${top.pos}</div>
       </div>
-
-      <div class="traits-index">
-        <div class="trait-row">
-          <span class="trait-label trait-positive">↑ Strengths</span>
-          <span class="trait-value">${top.pos}</span>
-        </div>
-        <div class="trait-row">
-          <span class="trait-label trait-negative">↓ Pitfalls</span>
-          <span class="trait-value">${top.neg}</span>
-        </div>
-      </div>
-
-      <p style="color:var(--ink-main);margin-bottom:16px;line-height:1.7;font-size:1rem;">${top.desc}</p>
-
-      <button class="secondary-btn" id="toggle-fact-btn" onclick="toggleHistoricalFact()">Show Historical Context</button>
-      <div class="fact-box" id="historical-fact-box" style="display: none;">
-        <strong>Behind the History:</strong><br>${top.fact}
-      </div>
-
-      ${tieMates.length > 1 ? `
-        <div style="margin-top: 20px; border-top: 1px dashed var(--bg-border); padding-top: 16px;">
-          <p style="font-size: 0.9rem; margin-bottom: 12px; font-family:'Lexend', sans-serif;">
-            You perfectly balanced metrics between <strong>${tieMates.length} minds</strong>. Currently viewing profile ${activeTieIndex + 1} of ${tieMates.length}.
-          </p>
-          <button class="secondary-btn" style="margin-top:0; border-color: var(--accent); color: var(--accent);" onclick="cycleTiedProfile(${tieMates.length})">
-            See Next Tied Personality Profile
-          </button>
-        </div>
-      ` : ''}
-
-      <div style="margin-top: 24px;">
-        <div style="font-family:'Fira Code',monospace;font-size:0.7rem;color:var(--ink-muted);margin-bottom:8px;">ALL SCORES</div>
-        <div class="score-breakdown">
-          ${sortedResultProfiles.map((f, i) => `
-            <span class="score-chip${f.score === primeHighScore ? ' top' : ''}">
-              ${f.name.split(' ').pop()} ${f.score}pt
-            </span>
-          `).join('')}
-        </div>
-      </div>
-
-      <div class="app-disclaimer">
-        <strong>Disclaimer:</strong> This application is entirely a fun concept exploration engine, not a definitive psychological verification framework. Take these indicators with a grain of salt! If an archetype captures your interest, invest some personal time into reviewing their historical context and reading their actual written works to discover how they navigated reality.
+      <div>
+        <span class="trait-entry-label neg">System Vulnerabilities</span>
+        <div class="trait-entry-value">${top.neg}</div>
       </div>
     </div>
+
+    <button class="action-trigger" onclick="renderResultPhaseThree()">
+      <span>Access Historical Blueprint Logs</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </button>
   `;
-  resultBox.style.display = 'block';
+
+  container.appendChild(step2);
+  window.scrollTo({ top: step2.offsetTop - 40, behavior: 'smooth' });
 }
 
-function cycleTiedProfile(tieCount) {
-  activeTieIndex = (activeTieIndex + 1) % tieCount;
-  renderProfileCard();
-}
+// PHASE 3: Historical Fact, Scores & Re-evaluation Trigger
+function renderResultPhaseThree() {
+  const p2Button = document.querySelector('#result-phase-2 .action-trigger');
+  if (p2Button) p2Button.style.display = 'none';
 
-function toggleHistoricalFact() {
-  const box = document.getElementById('historical-fact-box');
-  const btn = document.getElementById('toggle-fact-btn');
-  if (box.style.display === 'none') {
-    box.style.display = 'block';
-    btn.textContent = 'Hide Historical Context';
-  } else {
-    box.style.display = 'none';
-    btn.textContent = 'Show Historical Context';
-  }
+  const top = sortedResultProfiles[0];
+  const primeHighScore = top.score;
+  const container = document.getElementById('archetype-result');
+
+  const step3 = document.createElement('div');
+  step3.className = 'procedural-step-block';
+  step3.innerHTML = `
+    <div class="historical-context-card">
+      <span class="system-meta" style="margin-bottom:0.5rem;">HISTORICAL CONTEXT DECRYPTION</span>
+      ${top.fact}
+    </div>
+
+    <div style="margin-bottom: 3.5rem;">
+      <span class="system-meta" style="margin-bottom:0.75rem;">MATRIX WEIGHT MATRIX DISTRIBUTION</span>
+      <div class="scores-minimal-chart">
+        ${sortedResultProfiles.map(f => `
+          <span class="score-tag-item${f.score === primeHighScore ? ' active-high' : ''}">
+            ${f.name.split(' ').pop()}: ${f.score}pt
+          </span>
+        `).join('')}
+      </div>
+    </div>
+
+    <button class="action-trigger" onclick="resetQuiz()" style="border-color: var(--accent); color: var(--accent);">
+      <span>Re-Run Diagnostic Matrix</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+    </button>
+  `;
+
+  container.appendChild(step3);
+  window.scrollTo({ top: step3.offsetTop - 40, behavior: 'smooth' });
 }
 
 function resetQuiz() {
   document.getElementById('result-screen').style.display = 'none';
   document.getElementById('archetype-result').style.display = 'none';
-  document.getElementById('terminal').style.display = 'none';
+  document.getElementById('archetype-result').innerHTML = '';
   document.getElementById('intro-screen').style.display = 'block';
 }
+
+// ─── SUPABASE DEVICE ANALYTICS TRACKER ────────────────────────────────────────
+async function trackDeviceVisit() {
+  if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+    return;
+  }
+
+  const payload = {
+    page_path: window.location.pathname,
+    screen_resolution: `${window.screen.width}x${window.screen.height}`,
+    user_agent: navigator.userAgent
+  };
+
+  try {
+    await fetch('/api/track', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+  } catch (err) {
+    console.error("> Analytics logging bypassed quietly.");
+  }
+}
+
+// Fire tracking sequence when DOM is prepared
+document.addEventListener("DOMContentLoaded", () => {
+  trackDeviceVisit();
+});
