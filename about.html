@@ -8,13 +8,55 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Lexend:wght@400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    .about-flow,
+    .about-figures-section {
+      font-family: 'Lora', Georgia, serif;
+    }
+    .about-flow h3,
+    .about-figures-section h2 {
+      font-family: 'Lora', Georgia, serif;
+      font-weight: 600;
+    }
+    .flow-connector {
+      padding: 2.5rem 0;
+    }
+    .floating-zone {
+      position: relative;
+      width: 100%;
+      height: 420px;
+      margin-top: 2rem;
+      background: transparent;
+      border: none;
+      overflow: visible;
+      cursor: default;
+    }
+    .floating-profile {
+      position: absolute;
+      padding: 0.75rem 1.25rem;
+      background: var(--bg-main);
+      border: 1px solid var(--bg-border);
+      border-radius: 20px;
+      font-family: 'Lora', Georgia, serif;
+      font-size: 0.95rem;
+      color: var(--ink-main);
+      white-space: nowrap;
+      user-select: none;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      will-change: transform;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+    .floating-profile:hover {
+      border-color: var(--accent);
+      background: var(--accent-dim);
+    }
+  </style>
 </head>
 <body>
   <script>
     (function() {
-      // Set to 'light' by default, or use the saved choice if it exists
-      const savedTheme = localStorage.getItem("theme") || "light";
-      document.documentElement.setAttribute("data-theme", savedTheme);
+      const saved = localStorage.getItem("theme") || "light";
+      document.documentElement.setAttribute("data-theme", saved);
     })();
   </script>
 
@@ -34,169 +76,118 @@
     <section class="about-hero">
       <div class="system-meta">How it works</div>
       <h1>Behind the Choices</h1>
-      <p class="narrative-prose">A simple, plain explanation of this test with no technical jargon or complicated details.</p>
+      <p class="narrative-prose">A simple, straightforward look at how this test finds your historical match without any confusing formulas or tech talk.</p>
     </section>
 
-    <!-- Visual Process Map -->
     <section class="about-flow">
 
       <div class="flow-step">
-        <div class="flow-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        <div class="flow-marker">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <circle cx="10" cy="10" r="8" stroke="var(--accent)" stroke-width="1.5"/>
+            <circle cx="10" cy="10" r="3" fill="var(--accent)"/>
           </svg>
         </div>
         <div class="flow-text">
-          <h3>1. You answer ten questions</h3>
-          <p>Each question is about a normal, daily situation. How you organize your day, buy things, deal with offenses, or react to set backs. There are no trick questions. Just choose the one that feels most natural to you.</p>
+          <h3>1. You answer everyday scenarios</h3>
+          <p>Each question looks at a normal, real-life situation—like how you map out tasks, handle a busy day, deal with mistakes, or clear unexpected hurdles. No trick choices, just pick what you would actually do.</p>
         </div>
       </div>
 
       <div class="flow-connector" aria-hidden="true">
-        <svg width="2" height="40" viewBox="0 0 2 40">
-          <line x1="1" y1="0" x2="1" y2="40" stroke="var(--bg-border)" stroke-width="2" stroke-dasharray="3 4"/>
+        <svg width="100%" height="140" viewBox="0 0 400 140" preserveAspectRatio="none" fill="none">
+          <path d="M 10 0 C 10 70, 390 70, 390 140" stroke="var(--bg-border)" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
       </div>
 
-      <div class="flow-step">
-        <div class="flow-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="12" y1="5" x2="12" y2="19"/>
-            <line x1="5" y1="12" x2="19" y2="12"/>
+      <div class="flow-step" style="flex-direction: row-reverse; text-align: right;">
+        <div class="flow-marker">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <circle cx="10" cy="10" r="8" stroke="var(--accent)" stroke-width="1.5"/>
+            <circle cx="10" cy="10" r="3" fill="var(--accent)"/>
           </svg>
         </div>
         <div class="flow-text">
-          <h3>2. Your habits are weighed</h3>
-          <p>Every answer carries different points. Some choices point to one specific person from history, while others share points across a few different profiles depending on how they lived their lives.</p>
+          <h3>2. Your patterns take shape</h3>
+          <p>As you move through the test, your answers connect you to different leaders and thinkers. Your choices might point cleanly to one specific person, or show a unique mix of traits shared across a few different minds.</p>
         </div>
       </div>
 
       <div class="flow-connector" aria-hidden="true">
-        <svg width="2" height="40" viewBox="0 0 2 40">
-          <line x1="1" y1="0" x2="1" y2="40" stroke="var(--bg-border)" stroke-width="2" stroke-dasharray="3 4"/>
+        <svg width="100%" height="140" viewBox="0 0 400 140" preserveAspectRatio="none" fill="none">
+          <path d="M 390 0 C 390 70, 10 70, 10 140" stroke="var(--bg-border)" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
       </div>
 
       <div class="flow-step">
-        <div class="flow-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-            <circle cx="12" cy="7" r="4"/>
+        <div class="flow-marker">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <circle cx="10" cy="10" r="8" stroke="var(--accent)" stroke-width="1.5"/>
+            <circle cx="10" cy="10" r="3" fill="var(--accent)"/>
           </svg>
         </div>
         <div class="flow-text">
-          <h3>3. Find your historical match</h3>
-          <p>We show you who your choices align with out of ten distinct profiles. You will see how you match their real strengths, personal vulnerabilities, and a tiny story from their actual lives.</p>
+          <h3>3. Finding your final match</h3>
+          <p>If your results end up in a close tie between two profiles at the very end, the test will give you one final question to break it. You'll get your exact historical match along with a breakdown of how you both get things done.</p>
         </div>
       </div>
 
     </section>
 
-    <!-- The Ten Figures -->
     <section class="about-figures-section">
-      <svg class="figures-deco" width="100%" height="60" viewBox="0 0 600 60" preserveAspectRatio="xMidYMid meet" fill="none" aria-hidden="true">
-        <circle cx="60"  cy="30" r="2.5" fill="var(--accent)" opacity="0.4"/>
-        <circle cx="130" cy="18" r="1.5" fill="var(--accent)" opacity="0.25"/>
-        <circle cx="200" cy="40" r="2"   fill="var(--accent)" opacity="0.35"/>
-        <circle cx="290" cy="22" r="3"   fill="var(--accent)" opacity="0.5"/>
-        <circle cx="370" cy="38" r="1.5" fill="var(--accent)" opacity="0.3"/>
-        <circle cx="450" cy="15" r="2"   fill="var(--accent)" opacity="0.4"/>
-        <circle cx="530" cy="35" r="2.5" fill="var(--accent)" opacity="0.3"/>
-        <line x1="60"  y1="30" x2="130" y2="18" stroke="var(--accent)" stroke-width="0.5" opacity="0.15"/>
-        <line x1="130" y1="18" x2="200" y2="40" stroke="var(--accent)" stroke-width="0.5" opacity="0.15"/>
-        <line x1="200" y1="40" x2="290" y2="22" stroke="var(--accent)" stroke-width="0.5" opacity="0.15"/>
-        <line x1="290" y1="22" x2="370" y2="38" stroke="var(--accent)" stroke-width="0.5" opacity="0.15"/>
-        <line x1="370" y1="38" x2="450" y2="15" stroke="var(--accent)" stroke-width="0.5" opacity="0.15"/>
-        <line x1="450" y1="15" x2="530" y2="35" stroke="var(--accent)" stroke-width="0.5" opacity="0.15"/>
-      </svg>
+      <div class="figures-curve-deco" aria-hidden="true">
+        <svg width="100%" height="40" viewBox="0 0 600 40" preserveAspectRatio="none" fill="none">
+          <path d="M 0 20 Q 150 5, 300 20 T 600 20" stroke="var(--accent)" stroke-width="1" opacity="0.15"/>
+        </svg>
+      </div>
 
       <h2>The Ten Profiles</h2>
-      <p class="narrative-prose" style="margin-top: 0.5rem; margin-bottom: 1.5rem;">Each person represents a completely different style of thinking and making decisions.</p>
+      <p class="narrative-prose" style="margin-top: 0.5rem; margin-bottom: 0;">These are the ten historical minds built into the test. Each one represents a completely different style of thinking, building, and leading.</p>
 
-      <div class="figures-grid">
-        <div class="figure-pill">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
-          <span>Albert Einstein</span>
-        </div>
-        <div class="figure-pill">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
-          <span>Nikola Tesla</span>
-        </div>
-        <div class="figure-pill">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
-          <span>Michael Jackson</span>
-        </div>
-        <div class="figure-pill">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
-          <span>Leonardo da Vinci</span>
-        </div>
-        <div class="figure-pill">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
-          <span>Alexander the Great</span>
-        </div>
-        <div class="figure-pill">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
-          <span>John D. Rockefeller</span>
-        </div>
-        <div class="figure-pill">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
-          <span>Elon Musk</span>
-        </div>
-        <div class="figure-pill">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
-          <span>Napoleon Bonaparte</span>
-        </div>
-        <div class="figure-pill">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
-          <span>Marie Curie</span>
-        </div>
-        <div class="figure-pill">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
-          <span>Steve Jobs</span>
-        </div>
+      <div class="floating-zone" id="profile-space">
+        <div class="floating-profile">Albert Einstein</div>
+        <div class="floating-profile">Nikola Tesla</div>
+        <div class="floating-profile">Michael Jackson</div>
+        <div class="floating-profile">Leonardo da Vinci</div>
+        <div class="floating-profile">Alexander the Great</div>
+        <div class="floating-profile">John D. Rockefeller</div>
+        <div class="floating-profile">Elon Musk</div>
+        <div class="floating-profile">Napoleon Bonaparte</div>
+        <div class="floating-profile">Marie Curie</div>
+        <div class="floating-profile">Steve Jobs</div>
       </div>
     </section>
 
-    <!-- Privacy details -->
     <section class="about-privacy">
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1rem;">
-        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-      </svg>
+      <div class="privacy-header-line">
+        <svg width="100%" height="20" viewBox="0 0 600 20" preserveAspectRatio="none" fill="none" aria-hidden="true">
+          <path d="M 0 10 C 200 10, 400 10, 600 10" stroke="var(--bg-border)" stroke-width="1"/>
+        </svg>
+      </div>
 
-      <h2>What we collect</h2>
-      <p class="narrative-prose">Your personal test answers stay entirely inside your browser window. They are never sent to a database, stored, or linked to you.</p>
-      <p class="narrative-prose">The only things we track are basic layout specs: your screen resolution, browser style, and the visited page path. This purely helps us keep the elements looking clean and aligned. No names, no emails, and absolutely zero identifiers.</p>
+      <h2>Your Privacy</h2>
+      <p class="narrative-prose">Your answers and choices stay entirely on your own device. Everything is processed safely right inside your web browser, which means your choices are never sent to a database, stored online, or tracked across the web.</p>
+      <p class="narrative-prose">We only look at basic details like your screen size to make sure the pages look clean and everything aligns beautifully on your phone or computer. We don't use tracking cookies, require log-ins, or collect personal information.</p>
 
       <div class="privacy-list">
         <div class="privacy-row">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>Your answers never leave your browser</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>Everything runs locally in your browser</span>
         </div>
         <div class="privacy-row">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>No signup, login, or accounts required</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>No accounts, passwords, or saved tracking data</span>
         </div>
         <div class="privacy-row">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>Only anonymous screen and device stats are logged</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>Only checks screen size to keep layouts looking sharp</span>
         </div>
       </div>
     </section>
 
-    <!-- Craft Studio -->
     <section class="about-studio">
       <h2>The Craft</h2>
-      <p class="narrative-prose">Reworked with simple margins, organic styling, and plain spacing by <strong>Malix Craft</strong>.</p>
-      
-      <!--
-      DEVELOPER CREDIT — next system release
-      <div class="dev-credit">
-        <span class="system-meta">Creator</span>
-        <a href="https://linkedin.com/" class="nav-link" target="_blank" rel="noopener">Profile Details</a>
-      </div>
-      -->
-
+      <p class="narrative-prose">Designed with simple layouts, natural styling, and intentional spacing by <strong>Malix Craft</strong>.</p>
       <div class="about-footer-meta">
         <span class="system-meta">System Version 3.0.0</span>
       </div>
@@ -204,6 +195,77 @@
 
   </main>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const container = document.getElementById("profile-space");
+      const items = container.querySelectorAll(".floating-profile");
+      const W = container.clientWidth;
+      const H = container.clientHeight;
+      const PUSH_R = 100;
+      const PUSH_R_SQ = PUSH_R * PUSH_R;
+
+      let mouseX = -1000, mouseY = -1000;
+
+      const data = Array.from(items).map((el, i) => {
+        const { width: w, height: h } = el.getBoundingClientRect();
+        const cols = 3;
+        const c = i % cols, r = Math.floor(i / cols);
+        return {
+          el,
+          w: w || 120, h: h || 36,
+          x: (W / cols) * c + W / (cols * 2) - (w / 2) + (Math.random() * 20 - 10),
+          y: (H / 4) * r + 40 + (Math.random() * 20 - 10),
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+          ox: 0, oy: 0
+        };
+      });
+
+      container.addEventListener("mousemove", e => {
+        const r = container.getBoundingClientRect();
+        mouseX = e.clientX - r.left;
+        mouseY = e.clientY - r.top;
+      });
+      container.addEventListener("mouseleave", () => { mouseX = -1000; mouseY = -1000; });
+
+      document.addEventListener("visibilitychange", () => {
+        if (!document.hidden) requestAnimationFrame(tick);
+      });
+
+      function tick() {
+        for (const d of data) {
+          d.x += d.vx;
+          d.y += d.vy;
+
+          if (d.x < 10)              { d.x = 10;              d.vx *= -1; }
+          if (d.x + d.w > W - 10)   { d.x = W - d.w - 10;   d.vx *= -1; }
+          if (d.y < 10)              { d.y = 10;              d.vy *= -1; }
+          if (d.y + d.h > H - 10)   { d.y = H - d.h - 10;   d.vy *= -1; }
+
+          const cx = d.x + d.w / 2, cy = d.y + d.h / 2;
+          const dx = cx - mouseX,   dy = cy - mouseY;
+          const distSq = dx * dx + dy * dy;
+
+          if (distSq < PUSH_R_SQ && distSq > 0) {
+            const dist  = Math.sqrt(distSq);
+            const force = (PUSH_R - dist) / PUSH_R;
+            const inv   = 1 / dist;
+            d.ox += (dx * inv * force * 45 - d.ox) * 0.15;
+            d.oy += (dy * inv * force * 45 - d.oy) * 0.15;
+          } else {
+            d.ox *= 0.92;
+            d.oy *= 0.92;
+          }
+
+          d.el.style.transform = `translate3d(${d.x + d.ox}px,${d.y + d.oy}px,0)`;
+        }
+
+        if (!document.hidden) requestAnimationFrame(tick);
+      }
+
+      requestAnimationFrame(tick);
+    });
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
