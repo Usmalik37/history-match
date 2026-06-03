@@ -1,4 +1,4 @@
-// ─── Tracking ─────────────────────────────────────────────────────────────────
+// Tracking :)
 async function trackDeviceVisit() {
   if (["localhost","127.0.0.1"].includes(window.location.hostname)) return;
   try {
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (document.getElementById("quiz-screen")) resetQuiz();
 });
 
-// ─── Theme ────────────────────────────────────────────────────────────────────
+//  Theme
 function toggleTheme() {
   const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
   document.documentElement.setAttribute("data-theme", next);
@@ -31,7 +31,7 @@ function updateThemeButtonText(t) {
   if (btn) btn.textContent = t === "dark" ? "Light Mode" : "Dark Mode";
 }
 
-// ─── Static Figure Data (no scores — state is separate) ───────────────────────
+//  Static Figure Data (no scores — state is separate) 
 const FIGURES = {
   einstein: {
     name: "Albert Einstein", subtitle: "The Systems Thinker",
@@ -115,7 +115,7 @@ const FIGURES = {
   }
 };
 
-// ─── Normalized Scoring ───────────────────────────────────────────────────────
+// Normalized Scoring 
 let scores   = {};   
 let ceilings = {};   
 
@@ -147,9 +147,9 @@ function applyFx(fx, target) {
   scores = real;
 }
 
-// ─── Question Pool ────────────────────────────────────────────────────────────
+// ─── Question Pool 
 const POOL = [
-  // ── ISOLATION / FOCUS ──────────────────────────────────────────────────────
+  // ISOLATION / FOCUS
   {
     tags: ["isolation","focus"],
     targets: ["einstein","tesla","curie"],
@@ -196,7 +196,7 @@ const POOL = [
     ]
   },
 
-  // ── CURIOSITY ──────────────────────────────────────────────────────────────
+  // CURIOSITY 
   {
     tags: ["curiosity","distraction"],
     targets: ["vinci","einstein"],
@@ -243,7 +243,7 @@ const POOL = [
     ]
   },
 
-  // ── RISK / ACTION ──────────────────────────────────────────────────────────
+  //  RISK / ACTION 
   {
     tags: ["recklessness","action"],
     targets: ["musk","alexander"],
@@ -290,7 +290,7 @@ const POOL = [
     ]
   },
 
-  // ── SACRIFICE / OBSESSION ──────────────────────────────────────────────────
+  // SACRIFICE / OBSESSION 
   {
     tags: ["sacrifice","obsession"],
     targets: ["curie","tesla","musk"],
@@ -337,7 +337,7 @@ const POOL = [
     ]
   },
 
-  // ── PERFECTIONISM / CRAFT ──────────────────────────────────────────────────
+  // PERFECTIONISM / CRAFT 
   {
     tags: ["perfectionism","idealism"],
     targets: ["jobs","jackson","tesla"],
@@ -384,7 +384,7 @@ const POOL = [
     ]
   },
 
-  // ── DISCIPLINE / METHOD ────────────────────────────────────────────────────
+  // DISCIPLINE / METHOD 
   {
     tags: ["discipline","method"],
     targets: ["jackson","curie","rockefeller"],
@@ -416,7 +416,7 @@ const POOL = [
     ]
   },
 
-  // ── LEADERSHIP / CONTROL ───────────────────────────────────────────────────
+  // LEADERSHIP / CONTROL 
   {
     tags: ["leadership","control"],
     targets: ["alexander","napoleon","jobs"],
@@ -463,7 +463,7 @@ const POOL = [
     ]
   },
 
-  // ── STRATEGY / PATIENCE ────────────────────────────────────────────────────
+  //  STRATEGY / PATIENCE 
   {
     tags: ["strategy","manipulation"],
     targets: ["rockefeller","napoleon"],
@@ -510,7 +510,7 @@ const POOL = [
     ]
   },
 
-  // ── OUTSIDER / AMBITION ────────────────────────────────────────────────────
+  // ── OUTSIDER / AMBITION  
   {
     tags: ["ambition","outsider"],
     targets: ["napoleon","musk","curie"],
@@ -557,7 +557,7 @@ const POOL = [
     ]
   },
 
-  // ── VISION / ORIGINALITY ───────────────────────────────────────────────────
+  // VISION / ORIGINALITY
   {
     tags: ["vision","originality"],
     targets: ["tesla","einstein","vinci"],
@@ -589,7 +589,7 @@ const POOL = [
     ]
   },
 
-  // ── EMOTIONAL / ESCAPE ─────────────────────────────────────────────────────
+  // EMOTIONAL / ESCAPE
   {
     tags: ["escape","emotion"],
     targets: ["jackson","tesla","vinci"],
@@ -636,7 +636,7 @@ const POOL = [
     ]
   },
 
-  // ── SYSTEMS / BIG PICTURE ──────────────────────────────────────────────────
+  //SYSTEMS / BIG PICTURE 
   {
     tags: ["systems","big-picture"],
     targets: ["rockefeller","einstein","napoleon"],
@@ -668,7 +668,7 @@ const POOL = [
     ]
   },
 
-  // ── FINISHING / FOLLOW-THROUGH ─────────────────────────────────────────────
+  // FINISHING / FOLLOW-THROUGH
   {
     tags: ["finishing","follow-through"],
     targets: ["vinci","curie","rockefeller"],
@@ -701,7 +701,7 @@ const POOL = [
   }
 ];
 
-// ─── Contrast / Tiebreaker Questions ─────────────────────────────────────────
+// Contrast / Tiebreaker Questions 
 const CONTRAST = {
   einstein_tesla:     { q: "You just had a breakthrough idea. What do you do first?", a: ["Write down the equations to prove it is actually true.", "Draw a picture of exactly what it will look like when it exists."], fx: [() => scores.einstein+=5, () => scores.tesla+=5] },
   einstein_curie:     { q: "What keeps you going when a problem gets very hard?", a: ["Pure curiosity. I just need to understand it.", "The thought of what solving it will change for other people."], fx: [() => scores.einstein+=5, () => scores.curie+=5] },
@@ -724,7 +724,7 @@ const CONTRAST = {
   curie_einstein:     { q: "You keep working alone when everyone else has stopped. Why?", a: ["Because I have not found the answer yet and I need to.", "Because I am not done thinking yet."], fx: [() => scores.curie+=5, () => scores.einstein+=5] }
 };
 
-// ─── Adaptive Engine ──────────────────────────────────────────────────────────
+// Adaptive Engine
 const TOTAL_QS = 9;  
 
 function selectNextQ(used) {
@@ -752,7 +752,7 @@ function getTopFigures(n = 3) {
     .map(([k]) => k);
 }
 
-// ─── Quiz State ───────────────────────────────────────────────────────────────
+// Quiz State 
 let activeQs      = [];
 let snapshots     = [];   
 let usedTags      = new Set();
@@ -760,7 +760,7 @@ let currentIdx    = 0;
 let isRefinement  = false;
 let sortedResults = [];
 
-// ─── Disclaimer Screen ────────────────────────────────────────────────────────
+// Disclaimer Screen 
 function showDisclaimer() {
   document.getElementById('intro-screen').style.display = 'none';
   const disc = document.getElementById('disclaimer-screen');
@@ -772,7 +772,7 @@ function startFromDisclaimer() {
   beginQuiz();
 }
 
-// ─── Quiz Start ───────────────────────────────────────────────────────────────
+// Quiz Start 
 function startQuiz() {
   showDisclaimer();
 }
@@ -807,7 +807,7 @@ function beginQuiz() {
   renderQuestion();
 }
 
-// ─── Render ───────────────────────────────────────────────────────────────────
+// Render 
 function renderQuestion() {
   const q     = activeQs[currentIdx];
   const total = isRefinement ? activeQs.length : TOTAL_QS;
@@ -833,7 +833,7 @@ function renderQuestion() {
   });
 }
 
-// ─── Selection ────────────────────────────────────────────────────────────────
+// Selection
 function selectOption(idx, qObj) {
   snapshots[currentIdx] = { ...scores };
 
@@ -864,7 +864,7 @@ function selectOption(idx, qObj) {
   }, 350);
 }
 
-// ─── Navigation ───────────────────────────────────────────────────────────────
+// Navigation
 function goToPrevQuestion() {
   if (currentIdx === 0 || isRefinement) return;
   if (snapshots[currentIdx]) {
@@ -895,7 +895,7 @@ function goToNextQuestion() {
   }
 }
 
-// ─── Tie Detection ────────────────────────────────────────────────────────────
+// Tie Detection 
 function checkForTies() {
   sortedResults = Object.entries(scores)
     .map(([k, s]) => ({ key: k, score: s, ...FIGURES[k] }))
@@ -921,7 +921,7 @@ function findContrastKey(a, b) {
        : null;
 }
 
-// ─── Results ──────────────────────────────────────────────────────────────────
+// Results
 function showResults() {
   document.getElementById('quiz-screen').style.display   = 'none';
   document.getElementById('result-screen').style.display = 'block';
@@ -942,7 +942,7 @@ function showResults() {
   })();
 }
 
-// ─── Confidence Calculation ───────────────────────────────────────────────────
+// Confidence Calculation
 function getConfidence(topScore, allScores) {
   const total = allScores.reduce((s, v) => s + v, 0);
   if (!total) return { pct: 0, label: "" };
@@ -1155,7 +1155,7 @@ async function handleShare(btn) {
   }
 }
 
-// ─── Reset ────────────────────────────────────────────────────────────────────
+//  Reset
 function resetQuiz() {
   document.getElementById('result-screen').style.display = 'none';
   const rb = document.getElementById('archetype-result');
