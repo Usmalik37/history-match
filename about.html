@@ -50,6 +50,45 @@
       border-color: var(--accent);
       background: var(--accent-dim);
     }
+
+  .about-stats-section {
+    margin-bottom: 4rem;
+  }
+  .about-stats-section h2 {
+    font-family: 'Lora', Georgia, serif;
+    font-weight: 600;
+    font-size: 1.35rem;
+    margin-bottom: 0.5rem;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1.5rem;
+  }
+  .stat-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 1.5rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--bg-border);
+    border-radius: 4px;
+  }
+  .stat-value {
+    font-family: 'Lexend', sans-serif;
+    font-size: 1.9rem;
+    font-weight: 500;
+    color: var(--ink-main);
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.72rem;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
   </style>
 </head>
 <body>
@@ -157,6 +196,27 @@
         <div class="floating-profile">Steve Jobs</div>
       </div>
     </section>
+
+
+<section class="about-stats-section">
+  <h2>By the numbers</h2>
+  <p class="narrative-prose" style="margin-bottom:2rem;">Live stats from everyone who has taken the test.</p>
+
+  <div class="stats-grid">
+    <div class="stat-cell">
+      <span class="stat-value" id="stat-visitors">—</span>
+      <span class="stat-label">Unique visitors</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-value" id="stat-completions">—</span>
+      <span class="stat-label">Tests completed</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-value" id="stat-figure">—</span>
+      <span class="stat-label">Most matched figure</span>
+    </div>
+  </div>
+</section>
 
     <section class="about-privacy">
       <div class="privacy-header-line">

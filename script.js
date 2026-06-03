@@ -3,10 +3,9 @@ async function trackDeviceVisit() {
   if (["localhost","127.0.0.1"].includes(window.location.hostname)) return;
   try {
     await fetch('/api/track', {
-      method: 'POST',
+      method:  'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        page_path:         window.location.pathname,
         screen_resolution: `${window.screen.width}x${window.screen.height}`,
         user_agent:        navigator.userAgent
       })
@@ -117,27 +116,20 @@ const FIGURES = {
 };
 
 // ─── Normalized Scoring ───────────────────────────────────────────────────────
-// Scores are stored separately from static data.
-// All raw scores are later normalized per-question to remove pool-frequency bias.
-// Each question registers its max possible award so we can compute a fair ceiling.
-
-let scores   = {};   // { key: rawScore }
-let ceilings = {};   // { key: maxAwardable across all questions }
+let scores   = {};   
+let ceilings = {};   
 
 function initScores() {
   scores   = {};
   ceilings = {};
   for (const k in FIGURES) { scores[k] = 0; ceilings[k] = 0; }
 
-  // Pre-compute per-figure ceiling from the full pool
   for (const q of POOL) {
     const figureMaxes = {};
     for (const fx of q.fx) {
       const before = { ...scores };
-      // Simulate applying this answer to find what each figure could gain
       const tmp = {};
       for (const k in FIGURES) tmp[k] = 0;
-      // We use a throw-away object to avoid mutating real scores
       const tmpScores = { ...tmp };
       applyFx(fx, tmpScores);
       for (const k in FIGURES) {
@@ -148,10 +140,7 @@ function initScores() {
   }
 }
 
-// Helper: apply a score function against a target object instead of global scores
 function applyFx(fx, target) {
-  // fx functions reference the global `scores` object by convention.
-  // For ceiling calculation we swap it temporarily.
   const real = scores;
   scores = target;
   fx();
@@ -159,13 +148,6 @@ function applyFx(fx, target) {
 }
 
 // ─── Question Pool ────────────────────────────────────────────────────────────
-// Scoring design rules applied here:
-//   - No question awards more than 4 pts to any single figure
-//   - No answer option is socially dominant (no "obviously right" choice)
-//   - Each question covers at least 2 distinct figures meaningfully
-//   - Tags drive adaptive selection; targets are the 2-3 most-distinguished figures
-//   - Pool is large enough (30+) that 9-question runs feel varied across retakes
-
 const POOL = [
   // ── ISOLATION / FOCUS ──────────────────────────────────────────────────────
   {
@@ -720,9 +702,6 @@ const POOL = [
 ];
 
 // ─── Contrast / Tiebreaker Questions ─────────────────────────────────────────
-// Each entry is a direct head-to-head for a close-matched pair.
-// Designed to be unanswerable by "type" — both options must feel equally valid.
-
 const CONTRAST = {
   einstein_tesla:     { q: "You just had a breakthrough idea. What do you do first?", a: ["Write down the equations to prove it is actually true.", "Draw a picture of exactly what it will look like when it exists."], fx: [() => scores.einstein+=5, () => scores.tesla+=5] },
   einstein_curie:     { q: "What keeps you going when a problem gets very hard?", a: ["Pure curiosity. I just need to understand it.", "The thought of what solving it will change for other people."], fx: [() => scores.einstein+=5, () => scores.curie+=5] },
@@ -746,10 +725,8 @@ const CONTRAST = {
 };
 
 // ─── Adaptive Engine ──────────────────────────────────────────────────────────
-const TOTAL_QS = 9;  // Increased from 7 for better signal depth
+const TOTAL_QS = 9;  
 
-// Weights each unused question by how relevant it is to current top figures.
-// Adds a small noise factor to keep reruns feeling varied.
 function selectNextQ(used) {
   const topKeys = getTopFigures(4);
   const unused  = POOL.filter(q => !used.has(q.q));
@@ -759,7 +736,6 @@ function selectNextQ(used) {
 
   const weighted = unused.map(q => {
     const overlap  = q.targets.filter(k => topKeys.includes(k)).length;
-    // Penalise questions whose tags were already heavily covered
     const tagDupe  = q.tags.filter(t => usedTags.has(t)).length;
     const noise    = Math.random() * 0.4;
     return { q, score: overlap * 2 - tagDupe * 0.5 + noise };
@@ -778,7 +754,7 @@ function getTopFigures(n = 3) {
 
 // ─── Quiz State ───────────────────────────────────────────────────────────────
 let activeQs      = [];
-let snapshots     = [];   // scores before each answer (for undo on back)
+let snapshots     = [];   
 let usedTags      = new Set();
 let currentIdx    = 0;
 let isRefinement  = false;
@@ -802,7 +778,6 @@ function startQuiz() {
 }
 
 function beginQuiz() {
-  // Reset all state
   scores        = {};
   for (const k in FIGURES) scores[k] = 0;
   activeQs      = [];
@@ -812,12 +787,10 @@ function beginQuiz() {
   isRefinement  = false;
   sortedResults = [];
 
-  // Seed: 3 questions from maximally spread tag groups for broad opening signal
   const seedTags  = ["curiosity", "leadership", "sacrifice", "recklessness", "perfectionism", "discipline"];
   const seedPool  = POOL.filter(q => q.tags.some(t => seedTags.includes(t)));
   const shuffled  = [...seedPool].sort(() => Math.random() - 0.5);
 
-  // Pick 3 seeds with no overlapping tags
   const seeds = [];
   const seenT = new Set();
   for (const q of shuffled) {
@@ -862,13 +835,13 @@ function renderQuestion() {
 
 // ─── Selection ────────────────────────────────────────────────────────────────
 function selectOption(idx, qObj) {
-  // Snapshot before applying
   snapshots[currentIdx] = { ...scores };
 
   qObj.fx[idx]();
 
-  // Tag tracking for diversity
-  qObj.tags.forEach(t => usedTags.add(t));
+  if (qObj.tags) {
+    qObj.tags.forEach(t => usedTags.add(t));
+  }
 
   Array.from(document.getElementById('options-container').children)
     .forEach((b, i) => { if (i === idx) b.classList.add('selected'); b.disabled = true; });
@@ -879,10 +852,9 @@ function selectOption(idx, qObj) {
     const usedSet = new Set(activeQs.map(q => q.q));
 
     if (currentIdx < TOTAL_QS - 1) {
-      // Add next adaptive question if not already queued
       if (activeQs.length <= currentIdx + 1) {
         const next = selectNextQ(usedSet);
-        if (next) { activeQs.push(next); next.tags.forEach(t => usedTags.add(t)); }
+        if (next) { activeQs.push(next); if (next.tags) next.tags.forEach(t => usedTags.add(t)); }
       }
       currentIdx++;
       renderQuestion();
@@ -895,14 +867,14 @@ function selectOption(idx, qObj) {
 // ─── Navigation ───────────────────────────────────────────────────────────────
 function goToPrevQuestion() {
   if (currentIdx === 0 || isRefinement) return;
-  // Restore scores to the snapshot taken before this question
   if (snapshots[currentIdx]) {
     scores = { ...snapshots[currentIdx] };
     snapshots[currentIdx] = undefined;
   }
-  // Also undo tags from questions answered after this point
   usedTags = new Set();
-  activeQs.slice(0, currentIdx).forEach(q => q.tags.forEach(t => usedTags.add(t)));
+  activeQs.slice(0, currentIdx).forEach(q => {
+    if (q.tags) q.tags.forEach(t => usedTags.add(t));
+  });
 
   currentIdx--;
   renderQuestion();
@@ -914,7 +886,7 @@ function goToNextQuestion() {
   if (currentIdx < TOTAL_QS - 1) {
     if (activeQs.length <= currentIdx + 1) {
       const next = selectNextQ(usedSet);
-      if (next) { activeQs.push(next); next.tags.forEach(t => usedTags.add(t)); }
+      if (next) { activeQs.push(next); if (next.tags) next.tags.forEach(t => usedTags.add(t)); }
     }
     currentIdx++;
     renderQuestion();
@@ -924,7 +896,6 @@ function goToNextQuestion() {
 }
 
 // ─── Tie Detection ────────────────────────────────────────────────────────────
-// Threshold: gap of ≤ 2 triggers a tiebreaker (more sensitive than the old ≤ 1)
 function checkForTies() {
   sortedResults = Object.entries(scores)
     .map(([k, s]) => ({ key: k, score: s, ...FIGURES[k] }))
@@ -972,15 +943,10 @@ function showResults() {
 }
 
 // ─── Confidence Calculation ───────────────────────────────────────────────────
-// Rather than a magic multiplier, we compute a genuine normalized confidence:
-// confidence = top_score / total_score, expressed as a percentage.
-// We then map this to a display label so users have context for the number.
 function getConfidence(topScore, allScores) {
   const total = allScores.reduce((s, v) => s + v, 0);
   if (!total) return { pct: 0, label: "" };
   const raw = topScore / total;
-  // Raw will typically land between 0.15 (10 figures, uniform) and 0.60 (very clear)
-  // Normalise to a 0–100 display range using the expected bounds
   const lo = 0.10, hi = 0.60;
   const pct = Math.min(Math.round(((raw - lo) / (hi - lo)) * 100), 99);
   const label = pct >= 75 ? "Strong match"
@@ -1009,11 +975,29 @@ function calculateResult() {
     return;
   }
 
+  const top = sortedResults[0];
+  trackCompletion(top.key, top.name); 
   terminal.style.display = 'none';
   const rb = document.getElementById('archetype-result');
   rb.innerHTML = '';
   rb.style.display = 'block';
   renderPhaseOne();
+}
+
+async function trackCompletion(figureKey, figureName) {
+  if (["localhost","127.0.0.1"].includes(window.location.hostname)) return;
+  try {
+    await fetch('/api/complete', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        figure_key:        figureKey,
+        figure_name:       figureName,
+        screen_resolution: `${window.screen.width}x${window.screen.height}`,
+        user_agent:        navigator.userAgent
+      })
+    });
+  } catch {}
 }
 
 function renderPhaseOne() {
@@ -1110,9 +1094,53 @@ function renderPhaseThree() {
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M21.5 2v6h-6"/><path d="M21.34 15.57a10 10 0 1 1-.57-8.38L21.5 8"/>
       </svg>
-    </button>`;
+    </button>  ${buildShareButton(top.name, top.subtitle)} `;
   document.getElementById('archetype-result').appendChild(block);
   block.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function buildShareButton(figureName, subtitleText) {
+  const shareText = `I just took the History Match test and got "${figureName} — ${subtitleText}". Take the test and see your result:`;
+  const shareUrl  = window.location.origin;
+
+  return `
+    <button class="action-trigger share-btn" onclick="handleShare()"
+      style="margin-top:1rem;"
+      data-text="${shareText.replace(/"/g, '&quot;')}"
+      data-url="${shareUrl}">
+      <span>Share your result</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+      </svg>
+    </button>
+    <div id="share-confirm" style="display:none;font-family:'Fira Code',monospace;font-size:0.8rem;color:var(--accent);margin-top:0.75rem;">
+      Link copied to clipboard.
+    </div>`;
+}
+
+async function handleShare() {
+  const btn  = document.querySelector('.share-btn');
+  const text = btn.dataset.text;
+  const url  = btn.dataset.url;
+
+  if (navigator.share) {
+    try {
+      await navigator.share({ title: 'History Match', text, url });
+      return;
+    } catch {}  
+  }
+
+  try {
+    await navigator.clipboard.writeText(`${text}\n${url}`);
+    const confirm = document.getElementById('share-confirm');
+    confirm.style.display = 'block';
+    setTimeout(() => confirm.style.display = 'none', 3000);
+  } catch {
+    window.prompt('Copy this link:', `${text}\n${url}`);
+  }
 }
 
 // ─── Reset ────────────────────────────────────────────────────────────────────
