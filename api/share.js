@@ -32,6 +32,11 @@ export default async function handler(req, res) {
     ? `${origin}/index.html?view=${fig}`
     : `${origin}/index.html`;
 
+  const ua = req.headers['user-agent'] || '';
+  const isBot = /bot|crawler|spider|crawling|facebookexternalhit|whatsapp|twitterbot|pinterest|linkedin/i.test(ua);
+
+  const redirectScript = isBot ? '' : `<script>window.location.href = "${targetUrl}";</script>`;
+
   const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,9 +58,7 @@ export default async function handler(req, res) {
   <meta name="twitter:description" content="${selected.desc}">
   <meta name="twitter:image" content="${imageUrl}">
 
-  <script>
-    window.location.href = "${targetUrl}";
-  </script>
+  ${redirectScript}
   
   <style>
     body {
@@ -93,5 +96,6 @@ export default async function handler(req, res) {
 </html>`;
 
   res.setHeader('Content-Type', 'text/html');
+  res.setHeader('Cache-Control', 's-maxage=86400, stale-while-revalidate=3600');
   return res.status(200).send(html);
 }

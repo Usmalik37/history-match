@@ -1104,7 +1104,7 @@ function buildShareButton(figureKey, figureName, subtitleText) {
   const shareText = `I just took the History Match test and got "${figureName} — ${subtitleText}". Take the test to see your match:`;
 
   return `
-    <button class="action-trigger share-btn" onclick="handleShare()"
+    <button class="action-trigger share-btn" onclick="handleShare(this)"
       style="margin-top:1rem;"
       data-text="${shareText.replace(/"/g, '&quot;')}"
       data-url="${baseShareUrl}">
@@ -1124,10 +1124,10 @@ function buildShareButton(figureKey, figureName, subtitleText) {
     </div>`;
 }
 
-async function handleShare() {
-  const btn = document.querySelector('.share-btn');
-  const text = btn.dataset.text;
-  const url = btn.dataset.url;
+async function handleShare(btn) {
+  const targetBtn = btn || document.querySelector('.share-btn');
+  const text = targetBtn.dataset.text;
+  const url = targetBtn.dataset.url;
 
   if (navigator.share) {
     try {
