@@ -21,7 +21,7 @@ export default async function handler(req, res) {
     vinci: { name: "Leonardo da Vinci", subtitle: "The Polymath Explorer", desc: "Your mind has no borders, fluidly connecting art, science, and endless human curiosity. See which historical figure matches you!" },
     alexander: { name: "Alexander the Great", subtitle: "The Bold Strategist", desc: "You lead from the front, driven by unstoppable ambition and an instinct for decisive action. Find your historical alter ego!" },
     rockefeller: { name: "John D. Rockefeller", subtitle: "The Master Disciplinarian", desc: "You build unbreakable structures and empires, using patience, meticulous detail, and massive scale to dominate." },
-    musk: { name: "Elon Musk", subtitle: "The First-Principles Builder", desc: "You break down hard problems to raw physics, betting big on engineering and grand futures. Take the test to discover your match!" },
+    musk: { name: "Elon Musk", stroke: "The First-Principles Builder", desc: "You break down hard problems to raw physics, betting big on engineering and grand futures. Take the test to discover your match!" },
     bonaparte: { name: "Napoleon Bonaparte", subtitle: "The Tactical Mind", desc: "You turn chaos into order with calculating speed, sharp organization, and supreme self-belief. Find your historical match." },
     curie: { name: "Marie Curie", subtitle: "The Resilient Pioneer", desc: "You work quietly through the hardest problems, guided by raw persistence and a pure love for truth. Discover your match today." },
     jobs: { name: "Steve Jobs", subtitle: "The Intuitive Designer", desc: "You stand at the intersection of technology and liberal arts, demanding absolute beauty and simplicity. See if you match Steve Jobs!" }
@@ -118,6 +118,6 @@ export default async function handler(req, res) {
 </html>`;
 
   res.setHeader('Content-Type', 'text/html');
-  res.setHeader('Cache-Control', 's-maxage=86400, stale-while-revalidate=3600');
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
   return res.status(200).send(html);
 }
