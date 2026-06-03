@@ -117,6 +117,32 @@ h1 {
   color: var(--bg-main);
 }
 
+/* ── Disclaimer Screen ───────────────────────────────────────────────────── */
+#disclaimer-screen {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+#disclaimer-screen h2 {
+  font-family: 'Lora', Georgia, serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.4;
+  color: var(--ink-main);
+  margin-bottom: 1.25rem;
+}
+
+#disclaimer-screen .narrative-prose {
+  margin-bottom: 1rem;
+}
+
+#disclaimer-screen .narrative-prose:last-of-type {
+  margin-bottom: 2.5rem;
+}
+
+
+
 .quiz-metadata-row {
   display: flex;
   justify-content: space-between;
