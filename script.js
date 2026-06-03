@@ -1094,14 +1094,18 @@ function renderPhaseThree() {
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M21.5 2v6h-6"/><path d="M21.34 15.57a10 10 0 1 1-.57-8.38L21.5 8"/>
       </svg>
-    </button>  ${buildShareButton(top.name, top.subtitle)} `;
+    </button>  ${buildShareButton(top.key, top.name, top.subtitle)} `;
   document.getElementById('archetype-result').appendChild(block);
   block.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function buildShareButton(figureKey, figureName, subtitleText) {
-  const baseShareUrl = `${window.location.origin}/api/share?fig=${figureKey}`;
-  const shareText = `I just took the History Match test and got "${figureName} — ${subtitleText}". Take the test to see your match:`;
+  const name = figureName || "History Match";
+  const subtitle = subtitleText || "";
+  
+  const baseShareUrl = `${window.location.origin}/api/share?fig=${encodeURIComponent(figureKey)}`;
+  
+  const shareText = `My historical alter ego is ${name} (${subtitle}).\n\nTake the scenario-based test to find your match:`;
 
   return `
     <button class="action-trigger share-btn" onclick="handleShare(this)"
@@ -1123,7 +1127,6 @@ function buildShareButton(figureKey, figureName, subtitleText) {
       Link copied to clipboard.
     </div>`;
 }
-
 async function handleShare(btn) {
   const targetBtn = btn || document.querySelector('.share-btn');
   const text = targetBtn.dataset.text;
