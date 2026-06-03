@@ -1,5 +1,6 @@
 export default async function handler(req, res) {
-  const { fig } = req.query;
+  const figQuery = req.query.fig;
+  const fig = typeof figQuery === 'string' ? figQuery.toLowerCase().trim() : '';
 
   const FIGURES = {
     einstein: { name: "Albert Einstein", subtitle: "The Systems Thinker", desc: "You approach problems with deep curiosity, viewing the world as an interconnected web of systems." },
@@ -20,7 +21,7 @@ export default async function handler(req, res) {
     desc: "Take the scenario-based test to reveal which great thinker or leader matches your core behavior."
   };
 
-  const host = req.headers['x-forwarded-host'] || req.headers.host || 'historymatch.com';
+  const host = req.headers.host || 'history-match.vercel.app';
   const protocol = host.includes('localhost') ? 'http' : 'https';
   const origin = `${protocol}://${host}`;
 
@@ -44,7 +45,7 @@ export default async function handler(req, res) {
   <title>History Match — ${selected.name}</title>
   
   <meta property="og:type" content="website">
-  <meta property="og:url" content="${origin}/api/share?fig=${fig || ''}">
+  <meta property="og:url" content="${origin}/api/share?fig=${fig}">
   <meta property="og:title" content="I matched with ${selected.name} (${selected.subtitle})">
   <meta property="og:description" content="${selected.desc}">
   <meta property="og:image" content="${imageUrl}">
@@ -53,7 +54,7 @@ export default async function handler(req, res) {
   <meta property="og:image:type" content="image/png">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="${origin}/api/share?fig=${fig || ''}">
+  <meta name="twitter:url" content="${origin}/api/share?fig=${fig}">
   <meta name="twitter:title" content="I matched with ${selected.name} (${selected.subtitle})">
   <meta name="twitter:description" content="${selected.desc}">
   <meta name="twitter:image" content="${imageUrl}">
