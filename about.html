@@ -70,8 +70,8 @@
     flex-direction: column;
     gap: 0.4rem;
     padding: 1.5rem;
-    background: var(--bg-surface);
-    border: 1px solid var(--bg-border);
+/*    background: var(--bg-surface);*/
+/*    border: 1px solid var(--bg-border);*/
     border-radius: 4px;
   }
   .stat-value {
@@ -324,6 +324,33 @@
       }
 
       requestAnimationFrame(tick);
+
+      const profileDisplayNames = {
+        'einstein': 'Albert Einstein',
+        'tesla': 'Nikola Tesla',
+        'jackson': 'Michael Jackson',
+        'vinci': 'Leonardo da Vinci',
+        'alexander': 'Alexander the Great',
+        'rockefeller': 'John D. Rockefeller',
+        'musk': 'Elon Musk',
+        'napoleon': 'Napoleon Bonaparte',
+        'curie': 'Marie Curie',
+        'jobs': 'Steve Jobs'
+      };
+
+      fetch('/api/stats')
+        .then(response => response.json())
+        .then(stats => {
+          document.getElementById('stat-visitors').textContent = stats.total_visitors?.toLocaleString() || '0';
+          document.getElementById('stat-completions').textContent = stats.total_completions?.toLocaleString() || '0';
+          document.getElementById('stat-figure').textContent = profileDisplayNames[stats.most_common_figure] || 'None yet';
+        })
+        .catch(error => {
+          console.error('Failed to load real-time stats:', error);
+          document.getElementById('stat-visitors').textContent = '—';
+          document.getElementById('stat-completions').textContent = '—';
+          document.getElementById('stat-figure').textContent = '—';
+        });
     });
   </script>
   <script src="script.js"></script>
