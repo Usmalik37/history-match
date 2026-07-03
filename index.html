@@ -8,6 +8,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&family=Afacad:ital,wght@0,400;0,500;1,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script>
+  window.va = window.va || function () {
+    (window.vaq = window.vaq || []).push(arguments);
+  };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
 
 </head>
 <body>
@@ -44,7 +50,7 @@
         <path d="M32 16v32M16 32h32" stroke="var(--bg-border)" stroke-width="1" />
       </svg>
       <h1>History Match</h1>
-      <p class="narrative-prose">An operational archetype engine. Answer simple, everyday scenarios to isolate your exact match against history's most distinct minds.</p>
+      <p class="narrative-prose">An operational archetype match engine. Answer simple, everyday scenarios to isolate your exact match against history's most distinct minds.</p>
 
       <button class="action-trigger" onclick="startQuiz()">
         <span>Begin Match</span>
@@ -61,10 +67,10 @@
           There are no right or wrong answers.
         </h2>
         <p class="narrative-prose" style="margin-bottom:1rem; font-size:1.05rem;">
-          Every choice is completely valid. This m maps behavioral tendencies, not knowledge parameters.
+          Every choice is completely valid. The code maps behavioral tendencies, not knowledge parameters.
         </p>
         <p class="narrative-prose" style="margin-bottom:2.5rem; font-size:1.05rem;">
-          The goal is to discover which historical approach aligns closest to your operational frameworks. Pick whatever feels intuitively accurate.
+          The goal is to discover which historical figure aligns closest to your personality. Pick whatever feels naturally like you.
         </p>
         <button class="action-trigger" onclick="startFromDisclaimer()">
           <span>Accept & Continue</span>
@@ -79,8 +85,14 @@
       <div class="quiz-metadata-row">
         <span id="progress-label" class="system-meta">Question 1 of 7</span>
         <div class="quiz-nav-actions">
-          <button id="prev-btn" class="text-link-btn" onclick="goToPrevQuestion()" aria-label="Previous question" disabled>← Back</button>
-          <button id="next-btn" class="text-link-btn" onclick="goToNextQuestion()" aria-label="Skip question">Skip →</button>
+          <button id="prev-btn" class="text-link-btn" onclick="goToPrevQuestion()" aria-label="Previous question" disabled><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="19" y1="12" x2="5" y2="12"/>
+        <polyline points="12 19 5 12 12 5"/>
+      </svg> Back</button>
+          <button id="next-btn" class="text-link-btn" onclick="goToNextQuestion()" aria-label="Skip question">Skip <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="19" y1="12" x2="5" y2="12"/>
+        <polyline points="12 19 5 12 12 5"/>
+      </svg></button>
         </div>
       </div>
 
