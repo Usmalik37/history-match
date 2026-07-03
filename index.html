@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>History Match</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&family=Afacad:ital,wght@0,400;0,500;1,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-</head>
 
+  <!--
+    UMAMI ANALYTICS — not yet configured.
+    Once you have a Umami instance (self-hosted or Umami Cloud), add:
+    <script defer src="https://YOUR-UMAMI-INSTANCE/script.js" data-website-id="YOUR-SITE-ID"></script>
+    Umami's script.js auto-tracks pageviews once added — no other code needed here.
+  -->
+</head>
 <body>
   <script>
     (function() {
@@ -18,83 +23,88 @@
       document.documentElement.setAttribute("data-theme", savedTheme);
     })();
   </script>
-  
+
   <nav class="system-nav">
     <a href="about.html" class="nav-link">About the Engine</a>
     <button class="theme-toggle" onclick="toggleTheme()" id="theme-toggle-btn">Dark Mode</button>
   </nav>
-  
+
   <main class="engine-layout">
-    
     <section id="intro-screen">
+      <!-- Signature element: constellation motif — traits connecting to a match -->
+      <svg class="hero-constellation" viewBox="0 0 280 280" fill="none" aria-hidden="true">
+        <line x1="60" y1="70" x2="150" y2="40" stroke="var(--bg-border)" stroke-width="1"/>
+        <line x1="150" y1="40" x2="220" y2="110" stroke="var(--bg-border)" stroke-width="1"/>
+        <line x1="60" y1="70" x2="100" y2="160" stroke="var(--bg-border)" stroke-width="1"/>
+        <line x1="100" y1="160" x2="220" y2="110" stroke="var(--bg-border)" stroke-width="1"/>
+        <line x1="100" y1="160" x2="170" y2="220" stroke="var(--bg-border)" stroke-width="1"/>
+        <line x1="220" y1="110" x2="170" y2="220" stroke="var(--bg-border)" stroke-width="1" opacity="0.5"/>
+        <circle class="node" cx="60" cy="70" r="4" fill="var(--accent)"/>
+        <circle class="node" cx="150" cy="40" r="3" fill="var(--ink-muted)"/>
+        <circle class="node" cx="220" cy="110" r="5" fill="var(--accent)"/>
+        <circle class="node" cx="100" cy="160" r="3" fill="var(--ink-muted)"/>
+        <circle class="node" cx="170" cy="220" r="4" fill="var(--ink-muted)"/>
+      </svg>
+
       <svg class="intro-deco" width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-        <circle cx="32" cy="32" r="30" stroke="var(--accent)" stroke-width="1" stroke-dasharray="4 4" />
-        <path d="M32 16v32M16 32h32" stroke="var(--accent)" stroke-width="1" />
+        <circle cx="32" cy="32" r="30" stroke="var(--bg-border)" stroke-width="1" stroke-dasharray="4 4" />
+        <path d="M32 16v32M16 32h32" stroke="var(--bg-border)" stroke-width="1" />
       </svg>
       <h1>History Match</h1>
       <p class="narrative-prose">An operational archetype engine. Answer simple, everyday scenarios naturally to isolate your exact match against history's most distinct minds.</p>
-      
+
       <button class="action-trigger" onclick="startQuiz()">
-        <span>Begin</span>
+        <span>Begin Engine</span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <polyline points="9 18 15 12 9 6" />
         </svg>
       </button>
-      
     </section>
+
     <section id="disclaimer-screen" style="display:none;">
-      <div class="procedural-step-block" style="max-width:540px;margin:0 auto;padding-top:4rem;">
+      <div class="procedural-step-block" style="max-width:540px; margin:0 auto;">
         <div class="system-meta" style="margin-bottom:1rem;">Before you start</div>
-        <h2 style="font-family:'Lora',Georgia,serif;font-weight:600;margin-bottom:1.25rem;font-size:1.4rem;">
+        <h2 style="font-family:'Lexend', sans-serif; font-weight:500; margin-bottom:1.25rem; font-size:1.5rem; line-height:1.3;">
           There are no right or wrong answers.
         </h2>
-        <p class="narrative-prose" style="margin-bottom:0.85rem;">
-          Every answer is valid. This is not a test of knowledge or intelligence.
+        <p class="narrative-prose" style="margin-bottom:1rem; font-size:1.05rem;">
+          Every choice is completely valid. This engine maps behavioral tendencies, not knowledge parameters.
         </p>
-        <p class="narrative-prose" style="margin-bottom:2rem;">
-          The goal is simply to understand which historical archetypes you naturally resemble most.
-          Just pick whatever feels true to you — the first answer that comes to mind is usually the most honest one.
+        <p class="narrative-prose" style="margin-bottom:2.5rem; font-size:1.05rem;">
+          The goal is to discover which historical approach aligns closest to your operational frameworks. Pick whatever feels intuitively accurate.
         </p>
         <button class="action-trigger" onclick="startFromDisclaimer()">
-          <span>I'm ready</span>
+          <span>Accept & Continue</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <polyline points="9 18 15 12 9 6" />
           </svg>
         </button>
       </div>
     </section>
+
     <section id="quiz-screen" style="display: none;">
       <div class="quiz-metadata-row">
         <span id="progress-label" class="system-meta">Question 1 of 7</span>
         <div class="quiz-nav-actions">
-          <button id="prev-btn" class="text-link-btn" onclick="goToPrevQuestion()"
-  title="Go back to the previous question" aria-label="Previous question" disabled>
-  ← Back
-</button>
-
-<button id="next-btn" class="text-link-btn" onclick="goToNextQuestion()"
-  title="Skip this question without answering" aria-label="Skip question">
-  Skip →
-</button>
+          <button id="prev-btn" class="text-link-btn" onclick="goToPrevQuestion()" aria-label="Previous question" disabled>← Back</button>
+          <button id="next-btn" class="text-link-btn" onclick="goToNextQuestion()" aria-label="Skip question">Skip →</button>
         </div>
       </div>
-      
+
       <div class="minimal-progress-track">
         <div class="minimal-progress-fill" id="progress-bar"></div>
       </div>
-      
-      <h2 id="question-text" class="quiz-question-heading">Loading question...</h2>
+
+      <h2 id="question-text" class="quiz-question-heading">Loading question parameters...</h2>
       <div class="flat-options-list" id="options-container"></div>
     </section>
-    
+
     <section id="result-screen" style="display: none;">
       <pre id="terminal" class="terminal-log" style="display: none;"></pre>
       <div id="archetype-result" style="display: none;"></div>
     </section>
-    
   </main>
-  
+
   <script src="script.js"></script>
 </body>
-
 </html>
