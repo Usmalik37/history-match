@@ -9,28 +9,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Lexend:wght@400;500;600&family=Afacad:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
-  <!--
-    UMAMI ANALYTICS — not yet configured.
-    1) Add your tracking script tag here, e.g.:
-       <script defer src="https://YOUR-UMAMI-INSTANCE/script.js" data-website-id="YOUR-SITE-ID"></script>
-    2) To show stats on this page, Umami's own API can serve them if you expose an endpoint
-       (self-hosted Umami has a REST API under /api/websites/:id/stats). Point the fetch()
-       call near the bottom of this file at that endpoint once it exists — it's currently
-       stubbed to fail gracefully and just show em-dashes.
-  -->
-
   <style>
-    .about-flow,
     .about-figures-section {
       font-family: 'Afacad', sans-serif;
     }
-    .about-flow h3,
     .about-figures-section h2 {
       font-family: 'Afacad', sans-serif;
       font-weight: 600;
-    }
-    .flow-connector {
-      padding: 2.5rem 0;
     }
     .floating-zone {
       position: relative;
@@ -60,44 +45,6 @@
     .floating-profile:hover {
       border-color: var(--accent);
       background: var(--accent-dim);
-    }
-
-    .about-stats-section {
-      margin-bottom: 4rem;
-    }
-    .about-stats-section h2 {
-      font-family: 'Afacad', sans-serif;
-      font-weight: 600;
-      font-size: 1.35rem;
-      margin-bottom: 0.5rem;
-    }
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 1.5rem;
-    }
-    .stat-cell {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-      padding: 1.5rem;
-      background: var(--bg-main);
-      border: 1px solid var(--bg-border);
-      border-radius: var(--radius-md);
-    }
-    .stat-value {
-      font-family: 'Lexend', sans-serif;
-      font-size: 1.9rem;
-      font-weight: 500;
-      color: var(--ink-main);
-      line-height: 1;
-    }
-    .stat-label {
-      font-family: 'Fira Code', monospace;
-      font-size: 0.72rem;
-      color: var(--ink-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
     }
   </style>
 </head>
@@ -129,58 +76,7 @@
     </section>
 
     <section class="about-flow">
-
-      <div class="flow-step">
-        <div class="flow-marker">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <circle cx="10" cy="10" r="8" stroke="var(--accent)" stroke-width="1.5"/>
-            <circle cx="10" cy="10" r="3" fill="var(--accent)"/>
-          </svg>
-        </div>
-        <div class="flow-text">
-          <h3>1. You answer everyday scenarios</h3>
-          <p>Each question looks at a normal, real-life situation—like how you map out tasks, handle a busy day, deal with mistakes, or clear unexpected hurdles. No trick choices, just pick what you would actually do.</p>
-        </div>
-      </div>
-
-      <div class="flow-connector" aria-hidden="true">
-        <svg width="100%" height="140" viewBox="0 0 400 140" preserveAspectRatio="none" fill="none">
-          <path d="M 10 0 C 10 70, 390 70, 390 140" stroke="var(--bg-border)" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-      </div>
-
-      <div class="flow-step" style="flex-direction: row-reverse; text-align: right;">
-        <div class="flow-marker">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <circle cx="10" cy="10" r="8" stroke="var(--accent)" stroke-width="1.5"/>
-            <circle cx="10" cy="10" r="3" fill="var(--accent)"/>
-          </svg>
-        </div>
-        <div class="flow-text">
-          <h3>2. Your patterns take shape</h3>
-          <p>As you move through the test, your answers connect you to different leaders and thinkers. Your choices might point cleanly to one specific person, or show a unique mix of traits shared across a few different minds.</p>
-        </div>
-      </div>
-
-      <div class="flow-connector" aria-hidden="true">
-        <svg width="100%" height="140" viewBox="0 0 400 140" preserveAspectRatio="none" fill="none">
-          <path d="M 390 0 C 390 70, 10 70, 10 140" stroke="var(--bg-border)" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-      </div>
-
-      <div class="flow-step">
-        <div class="flow-marker">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <circle cx="10" cy="10" r="8" stroke="var(--accent)" stroke-width="1.5"/>
-            <circle cx="10" cy="10" r="3" fill="var(--accent)"/>
-          </svg>
-        </div>
-        <div class="flow-text">
-          <h3>3. Finding your final match</h3>
-          <p>If your results end up in a close tie between two profiles at the very end, the test will give you one final question to break it. You'll get your exact historical match along with a breakdown of how you both get things done.</p>
-        </div>
-      </div>
-
+      <p class="narrative-prose">You'll answer a handful of everyday scenarios — nothing tricky, just how you'd naturally react. Your choices build a picture of your habits and instincts, and the test compares that picture against ten historical figures to find your closest match. If two matches end up close, one final question settles it.</p>
     </section>
 
     <section class="about-figures-section">
@@ -208,26 +104,6 @@
     </section>
 
 
-    <section class="about-stats-section">
-      <h2>By the numbers</h2>
-      <p class="narrative-prose" style="margin-bottom:2rem;">Live stats from everyone who has taken the test.</p>
-
-      <div class="stats-grid">
-        <div class="stat-cell">
-          <span class="stat-value" id="stat-visitors">—</span>
-          <span class="stat-label">Unique visitors</span>
-        </div>
-        <div class="stat-cell">
-          <span class="stat-value" id="stat-completions">—</span>
-          <span class="stat-label">Tests completed</span>
-        </div>
-        <div class="stat-cell">
-          <span class="stat-value" id="stat-figure">—</span>
-          <span class="stat-label">Most matched figure</span>
-        </div>
-      </div>
-    </section>
-
     <section class="about-privacy">
       <div class="privacy-header-line">
         <svg width="100%" height="20" viewBox="0 0 600 20" preserveAspectRatio="none" fill="none" aria-hidden="true">
@@ -236,8 +112,7 @@
       </div>
 
       <h2>Your Privacy</h2>
-      <p class="narrative-prose">Your answers and choices stay entirely on your own device. Everything is processed safely right inside your web browser, which means your choices are never sent to a database, stored online, or tracked across the web.</p>
-      <p class="narrative-prose">We only look at basic, anonymous usage details — like how many people visit and which pages get used — to understand how the test is doing. We don't use tracking cookies, require log-ins, or collect personal information.</p>
+      <p class="narrative-prose">Your answers stay entirely on your own device. Everything runs right inside your browser — nothing is sent to a server, stored online, or tracked.</p>
 
       <div class="privacy-list">
         <div class="privacy-row">
@@ -246,11 +121,7 @@
         </div>
         <div class="privacy-row">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>No accounts, passwords, or saved tracking data</span>
-        </div>
-        <div class="privacy-row">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>Anonymous, aggregate analytics only — no personal data collected</span>
+          <span>No accounts, no tracking, nothing saved</span>
         </div>
       </div>
     </section>
@@ -261,8 +132,7 @@
       <div class="about-footer-meta">
         <span class="system-meta">System Version 3.0.0</span>
         <div class="about-footer-links">
-          <!-- TODO: replace with your actual LinkedIn URL -->
-          <a href="https://www.linkedin.com/in/your-profile-here" class="footer-link" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.linkedin.com/in/usmalik-alexander-649a10413" class="footer-link" target="_blank" rel="noopener noreferrer">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
             </svg>
@@ -343,37 +213,6 @@
       }
 
       requestAnimationFrame(tick);
-
-      const profileDisplayNames = {
-        'einstein': 'Albert Einstein',
-        'tesla': 'Nikola Tesla',
-        'jackson': 'Michael Jackson',
-        'vinci': 'Leonardo da Vinci',
-        'franklin': 'Benjamin Franklin',
-        'rockefeller': 'John D. Rockefeller',
-        'musk': 'Elon Musk',
-        'napoleon': 'Napoleon Bonaparte',
-        'curie': 'Marie Curie',
-        'jobs': 'Steve Jobs'
-      };
-
-      // STATS SOURCE — currently stubbed since Supabase has been removed.
-      // Once Umami is set up, point this at your Umami API endpoint
-      // (e.g. GET /api/websites/:websiteId/stats) and map its response
-      // shape onto total_visitors / total_completions / most_common_figure.
-      // Until then this fails gracefully and shows em-dashes.
-      fetch('/api/stats')
-        .then(response => response.json())
-        .then(stats => {
-          document.getElementById('stat-visitors').textContent = stats.total_visitors?.toLocaleString() || '0';
-          document.getElementById('stat-completions').textContent = stats.total_completions?.toLocaleString() || '0';
-          document.getElementById('stat-figure').textContent = profileDisplayNames[stats.most_common_figure] || 'None yet';
-        })
-        .catch(() => {
-          document.getElementById('stat-visitors').textContent = '—';
-          document.getElementById('stat-completions').textContent = '—';
-          document.getElementById('stat-figure').textContent = '—';
-        });
     });
   </script>
   <script src="script.js"></script>
