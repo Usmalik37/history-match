@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About | History Match</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Lexend:wght@400;500;600&family=Afacad:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Lexend:wght@400;500;600&family=Afacad:ital,wght@0,400;0,600;1,400&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
   <style>
     .about-figures-section {
       font-family: 'Afacad', sans-serif;
     }
+
     .about-figures-section h2 {
       font-family: 'Afacad', sans-serif;
       font-weight: 600;
     }
+
     .floating-zone {
       position: relative;
       width: 100%;
@@ -27,6 +32,7 @@
       overflow: visible;
       cursor: default;
     }
+
     .floating-profile {
       position: absolute;
       padding: 0.75rem 1.25rem;
@@ -38,19 +44,21 @@
       color: var(--ink-main);
       white-space: nowrap;
       user-select: none;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
       will-change: transform;
       transition: background-color 0.2s ease, border-color 0.2s ease;
     }
+
     .floating-profile:hover {
       border-color: var(--accent);
       background: var(--accent-dim);
     }
   </style>
 </head>
+
 <body>
   <script>
-    (function() {
+    (function () {
       const saved = localStorage.getItem("theme") || "light";
       document.documentElement.setAttribute("data-theme", saved);
     })();
@@ -58,9 +66,10 @@
 
   <nav class="system-nav">
     <a href="index.html" class="nav-link">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <line x1="19" y1="12" x2="5" y2="12"/>
-        <polyline points="12 19 5 12 12 5"/>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="19" y1="12" x2="5" y2="12" />
+        <polyline points="12 19 5 12 12 5" />
       </svg>
       Back to test
     </a>
@@ -72,22 +81,27 @@
     <section class="about-hero">
       <div class="system-meta">How it works</div>
       <h1>Behind the Choices</h1>
-      <p class="narrative-prose">A simple, straightforward look at how this test finds your historical match without any confusing formulas or tech talk.</p>
+      <p class="narrative-prose">A simple, straightforward look at how this test finds your historical match without any
+        confusing formulas or tech talk.</p>
     </section>
 
     <section class="about-flow">
-      <p class="narrative-prose">You'll answer a handful of everyday scenarios — nothing tricky, just how you'd naturally react. Your choices build a picture of your habits and instincts, and the test compares that picture against ten historical figures to find your closest match. If two matches end up close, one final question settles it.</p>
+      <p class="narrative-prose">You'll answer a handful of everyday scenarios — nothing tricky, just how you'd
+        naturally react. Your choices build a picture of your habits and instincts, and the test compares that picture
+        against ten historical figures to find your closest match. If two matches end up close, one final question
+        settles it.</p>
     </section>
 
     <section class="about-figures-section">
       <div class="figures-curve-deco" aria-hidden="true">
         <svg width="100%" height="40" viewBox="0 0 600 40" preserveAspectRatio="none" fill="none">
-          <path d="M 0 20 Q 150 5, 300 20 T 600 20" stroke="var(--accent)" stroke-width="1" opacity="0.15"/>
+          <path d="M 0 20 Q 150 5, 300 20 T 600 20" stroke="var(--accent)" stroke-width="1" opacity="0.15" />
         </svg>
       </div>
 
       <h2>The Ten Profiles</h2>
-      <p class="narrative-prose" style="margin-top: 0.5rem; margin-bottom: 0;">These are the ten historical minds built into the test. Each one represents a completely different style of thinking, building, and leading.</p>
+      <p class="narrative-prose" style="margin-top: 0.5rem; margin-bottom: 0;">These are the ten historical minds built
+        into the test. Each one represents a completely different style of thinking, building, and leading.</p>
 
       <div class="floating-zone" id="profile-space">
         <div class="floating-profile">Albert Einstein</div>
@@ -107,20 +121,27 @@
     <section class="about-privacy">
       <div class="privacy-header-line">
         <svg width="100%" height="20" viewBox="0 0 600 20" preserveAspectRatio="none" fill="none" aria-hidden="true">
-          <path d="M 0 10 C 200 10, 400 10, 600 10" stroke="var(--bg-border)" stroke-width="1"/>
+          <path d="M 0 10 C 200 10, 400 10, 600 10" stroke="var(--bg-border)" stroke-width="1" />
         </svg>
       </div>
 
       <h2>Your Privacy</h2>
-      <p class="narrative-prose">Your answers stay entirely on your own device. Everything runs right inside your browser — nothing is sent to a server, stored online, or tracked.</p>
+      <p class="narrative-prose">Your answers stay entirely on your own device. Everything runs right inside your
+        browser — nothing is sent to a server, stored online, or tracked.</p>
 
       <div class="privacy-list">
         <div class="privacy-row">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
           <span>Everything runs locally in your browser</span>
         </div>
         <div class="privacy-row">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
           <span>No accounts, no tracking, nothing saved</span>
         </div>
       </div>
@@ -128,13 +149,16 @@
 
     <section class="about-studio">
       <h2>The Craft</h2>
-      <p class="narrative-prose">Designed with simple layouts, natural styling, and intentional spacing by <strong>Malix Craft</strong>.</p>
+      <p class="narrative-prose">Designed with simple layouts, natural styling, and intentional spacing by <strong>Malix
+          Craft</strong>.</p>
       <div class="about-footer-meta">
         <span class="system-meta">System Version 3.0.0</span>
         <div class="about-footer-links">
-          <a href="https://www.linkedin.com/in/usmalik-alexander-649a10413" class="footer-link" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.linkedin.com/in/usmalik-alexander-649a10413" class="footer-link" target="_blank"
+            rel="noopener noreferrer">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              <path
+                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
             </svg>
             LinkedIn
           </a>
@@ -186,19 +210,19 @@
           d.x += d.vx;
           d.y += d.vy;
 
-          if (d.x < 10)              { d.x = 10;              d.vx *= -1; }
-          if (d.x + d.w > W - 10)   { d.x = W - d.w - 10;   d.vx *= -1; }
-          if (d.y < 10)              { d.y = 10;              d.vy *= -1; }
-          if (d.y + d.h > H - 10)   { d.y = H - d.h - 10;   d.vy *= -1; }
+          if (d.x < 10) { d.x = 10; d.vx *= -1; }
+          if (d.x + d.w > W - 10) { d.x = W - d.w - 10; d.vx *= -1; }
+          if (d.y < 10) { d.y = 10; d.vy *= -1; }
+          if (d.y + d.h > H - 10) { d.y = H - d.h - 10; d.vy *= -1; }
 
           const cx = d.x + d.w / 2, cy = d.y + d.h / 2;
-          const dx = cx - mouseX,   dy = cy - mouseY;
+          const dx = cx - mouseX, dy = cy - mouseY;
           const distSq = dx * dx + dy * dy;
 
           if (distSq < PUSH_R_SQ && distSq > 0) {
-            const dist  = Math.sqrt(distSq);
+            const dist = Math.sqrt(distSq);
             const force = (PUSH_R - dist) / PUSH_R;
-            const inv   = 1 / dist;
+            const inv = 1 / dist;
             d.ox += (dx * inv * force * 45 - d.ox) * 0.15;
             d.oy += (dy * inv * force * 45 - d.oy) * 0.15;
           } else {
@@ -217,4 +241,5 @@
   </script>
   <script src="script.js"></script>
 </body>
+
 </html>

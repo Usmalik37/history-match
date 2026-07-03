@@ -1,10 +1,10 @@
 :root {
-  --bg-main:    #fbf9f6;
+  --bg-main: #fbf9f6;
   --bg-surface: #f4f0ea;
-  --bg-border:  #e6e0d5;
-  --ink-main:   #1a1917;
-  --ink-muted:  #706c64;
-  --accent:     #cc5229;
+  --bg-border: #e6e0d5;
+  --ink-main: #1a1917;
+  --ink-muted: #706c64;
+  --accent: #cc5229;
   --accent-dim: rgba(204, 82, 41, 0.06);
 
   --radius-sm: 8px;
@@ -13,16 +13,20 @@
 }
 
 :root[data-theme="dark"] {
-  --bg-main:    #111111;
+  --bg-main: #111111;
   --bg-surface: #161616;
-  --bg-border:  #222222;
-  --ink-main:   #e5e5e5;
-  --ink-muted:  #888888;
-  --accent:     #e06c44;
+  --bg-border: #222222;
+  --ink-main: #e5e5e5;
+  --ink-muted: #888888;
+  --accent: #e06c44;
   --accent-dim: rgba(226, 108, 68, 0.08);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   background-color: var(--bg-main);
@@ -34,7 +38,10 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -132,35 +139,81 @@ body {
   transform-origin: center;
   transform-box: fill-box;
 }
-.hero-constellation .node:nth-child(1) { animation-delay: 0.05s; }
-.hero-constellation .node:nth-child(2) { animation-delay: 0.15s; }
-.hero-constellation .node:nth-child(3) { animation-delay: 0.25s; }
-.hero-constellation .node:nth-child(4) { animation-delay: 0.35s; }
-.hero-constellation .node:nth-child(5) { animation-delay: 0.45s; }
+
+.hero-constellation .node:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.hero-constellation .node:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.hero-constellation .node:nth-child(3) {
+  animation-delay: 0.25s;
+}
+
+.hero-constellation .node:nth-child(4) {
+  animation-delay: 0.35s;
+}
+
+.hero-constellation .node:nth-child(5) {
+  animation-delay: 0.45s;
+}
 
 .hero-constellation .edge {
   stroke-dasharray: 120;
   stroke-dashoffset: 120;
   animation: drawEdge 0.5s ease-out forwards;
 }
-.hero-constellation .edge:nth-of-type(1) { animation-delay: 0.1s; }
-.hero-constellation .edge:nth-of-type(2) { animation-delay: 0.2s; }
-.hero-constellation .edge:nth-of-type(3) { animation-delay: 0.2s; }
-.hero-constellation .edge:nth-of-type(4) { animation-delay: 0.3s; }
-.hero-constellation .edge:nth-of-type(5) { animation-delay: 0.4s; }
-.hero-constellation .edge:nth-of-type(6) { animation-delay: 0.45s; }
+
+.hero-constellation .edge:nth-of-type(1) {
+  animation-delay: 0.1s;
+}
+
+.hero-constellation .edge:nth-of-type(2) {
+  animation-delay: 0.2s;
+}
+
+.hero-constellation .edge:nth-of-type(3) {
+  animation-delay: 0.2s;
+}
+
+.hero-constellation .edge:nth-of-type(4) {
+  animation-delay: 0.3s;
+}
+
+.hero-constellation .edge:nth-of-type(5) {
+  animation-delay: 0.4s;
+}
+
+.hero-constellation .edge:nth-of-type(6) {
+  animation-delay: 0.45s;
+}
 
 @keyframes snapIn {
-  0%   { opacity: 0; transform: scale(0); }
-  60%  { opacity: 1; transform: scale(1.25); }
-  100% { opacity: 1; transform: scale(1); }
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes drawEdge {
-  to { stroke-dashoffset: 0; }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
-#intro-screen > *:not(.hero-constellation) {
+#intro-screen>*:not(.hero-constellation) {
   position: relative;
   z-index: 1;
 }
@@ -327,8 +380,15 @@ h1 {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .profile-identity-lockup {
@@ -351,8 +411,13 @@ h1 {
 }
 
 @keyframes rotateBurst {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .photo-burst-wrap img {
@@ -410,8 +475,13 @@ h1 {
   margin-bottom: 0.5rem;
 }
 
-.trait-entry-label.pos { color: var(--ink-main); }
-.trait-entry-label.neg { color: var(--ink-muted); }
+.trait-entry-label.pos {
+  color: var(--ink-main);
+}
+
+.trait-entry-label.neg {
+  color: var(--ink-muted);
+}
 
 .trait-entry-value {
   font-size: 1rem;

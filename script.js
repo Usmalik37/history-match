@@ -17,9 +17,11 @@ const FIGURES = {
     neg: "Withdrawing from people, ignoring everyday responsibilities",
     desc: "You look at the big picture. When a problem catches your attention, you can't leave it alone because it genuinely fascinates you. You do your best thinking alone, in quiet, with no clock running. The risk is that the people around you sometimes feel like interruptions to a conversation you're already having with the problem.",
     fact: "Einstein confessed in his own writing that despite caring deeply about humanity as a concept, he felt a persistent aloofness from actual people, including his own family. He described his wish to withdraw into himself as something that grew stronger with every passing year.",
-    traits: { curiosity: 10, isolation: 7, risk: 2, discipline: 5, perfectionism: 4,
-              leadership: 2, sacrifice: 3, ambition: 3, strategy: 6, emotion: 2,
-              originality: 6, resilience: 6 },
+    traits: {
+      curiosity: 10, isolation: 7, risk: 2, discipline: 5, perfectionism: 4,
+      leadership: 2, sacrifice: 3, ambition: 3, strategy: 6, emotion: 2,
+      originality: 6, resilience: 6
+    },
     core: ["curiosity", "isolation"]
   },
   tesla: {
@@ -29,9 +31,11 @@ const FIGURES = {
     neg: "Commercial blindness, obsessive isolation",
     desc: "Your ideas arrive feeling sacred. You would rather abandon a project entirely than water it down for someone else. You don't naturally think in terms of money, deals, or selling yourself. The world rewards people who can package their vision. You are still deciding whether you care about that.",
     fact: "Tesla died alone in a New York hotel room, deeply in debt, after being systematically outmaneuvered by Edison in the marketplace. He claimed to sleep only two hours a night, washed his hands obsessively, refused to touch hair or pearls, and only stayed in rooms whose number was divisible by three.",
-    traits: { curiosity: 8, isolation: 9, risk: 3, discipline: 6, perfectionism: 8,
-              leadership: 1, sacrifice: 6, ambition: 4, strategy: 3, emotion: 3,
-              originality: 10, resilience: 5 },
+    traits: {
+      curiosity: 8, isolation: 9, risk: 3, discipline: 6, perfectionism: 8,
+      leadership: 1, sacrifice: 6, ambition: 4, strategy: 3, emotion: 3,
+      originality: 10, resilience: 5
+    },
     core: ["isolation", "originality"]
   },
   jackson: {
@@ -41,9 +45,11 @@ const FIGURES = {
     neg: "Escaping reality, fragile trust in other people",
     desc: "You feel things at an intensity most people around you can't track. You hold your own work to a standard that feels almost personal. Anything less than your best feels like a lie. You are drawn to beauty as a way of making sense of the world. The danger is retreating into controlled environments when real life gets too chaotic.",
     fact: "Jackson rehearsed individual physical moves for hours until they were technically flawless. His perfectionism extended to every production detail on his albums. Because his childhood was stolen by fame and abuse, he spent his adult life constructing controlled environments, including an entire private theme park, to recreate the safety he never had.",
-    traits: { curiosity: 4, isolation: 6, risk: 2, discipline: 7, perfectionism: 9,
-              leadership: 2, sacrifice: 8, ambition: 4, strategy: 2, emotion: 9,
-              originality: 6, resilience: 5 },
+    traits: {
+      curiosity: 4, isolation: 6, risk: 2, discipline: 7, perfectionism: 9,
+      leadership: 2, sacrifice: 8, ambition: 4, strategy: 2, emotion: 9,
+      originality: 6, resilience: 5
+    },
     core: ["perfectionism", "emotion"]
   },
   vinci: {
@@ -53,9 +59,11 @@ const FIGURES = {
     neg: "Leaving things unfinished, losing focus when interest shifts",
     desc: "You are genuinely interested in too many things at once. This makes you brilliant at spotting connections that specialists miss, but it also means projects get dropped the moment something more interesting arrives. Your notebooks are full of brilliant starts. Sometimes the world just needs you to finish one thing.",
     fact: "Researchers at King's College London formally proposed that Leonardo likely had ADHD. His voracious curiosity both powered his genius and constantly derailed his output. He worked on the Mona Lisa for roughly 16 years and died carrying the canvas. His patron the Duke of Milan eventually had him sign a contract with a legal penalty for leaving work unfinished.",
-    traits: { curiosity: 10, isolation: 4, risk: 3, discipline: 2, perfectionism: 5,
-              leadership: 2, sacrifice: 2, ambition: 3, strategy: 2, emotion: 4,
-              originality: 7, resilience: 3 },
+    traits: {
+      curiosity: 10, isolation: 4, risk: 3, discipline: 2, perfectionism: 5,
+      leadership: 2, sacrifice: 2, ambition: 3, strategy: 2, emotion: 4,
+      originality: 7, resilience: 3
+    },
     core: ["curiosity", "discipline"]   // low discipline is the core signature here
   },
   franklin: {
@@ -65,9 +73,11 @@ const FIGURES = {
     neg: "Over-systematizing yourself, mistaking control for growth",
     desc: "You treat your own habits like a project you're always tinkering with. You are endlessly curious, but you don't chase ideas just to admire them. You want them to actually work, fix something, or make you better at being you. You track your progress, adjust your approach, and rarely lose your temper in front of other people. The risk is turning your own life into a checklist and forgetting to just live it once in a while.",
     fact: "Franklin dropped out of school at ten years old and taught himself everything that followed. In his twenties he designed a system to track thirteen virtues in a small notebook, grading himself daily and cycling through the list four times a year for decades. He never believed he mastered it, but said the attempt alone made him a better and happier man than he would have been otherwise.",
-    traits: { curiosity: 9, isolation: 1, risk: 4, discipline: 8, perfectionism: 3,
-              leadership: 6, sacrifice: 2, ambition: 5, strategy: 8, emotion: 3,
-              originality: 5, resilience: 6 },
+    traits: {
+      curiosity: 9, isolation: 1, risk: 4, discipline: 8, perfectionism: 3,
+      leadership: 6, sacrifice: 2, ambition: 5, strategy: 8, emotion: 3,
+      originality: 5, resilience: 6
+    },
     core: ["curiosity", "strategy"]
   },
   rockefeller: {
@@ -77,9 +87,11 @@ const FIGURES = {
     neg: "Emotional coldness, seeing people as moving parts in a plan",
     desc: "You play a much longer game than almost everyone around you. While others react, you watch, position, and wait. You see chaos as a chance to build something steady and treat relationships like systems that need tending. Just remember that the people inside those systems are not resources.",
     fact: "During major oil market crashes, while competitors panicked and sold, Rockefeller calmly calculated their desperation and bought them out at deep discounts. He openly said their panic was his greatest competitive advantage. His biographer described his self-control as almost eerie. He never made a decision while emotional.",
-    traits: { curiosity: 3, isolation: 5, risk: 2, discipline: 9, perfectionism: 3,
-              leadership: 6, sacrifice: 3, ambition: 5, strategy: 10, emotion: 1,
-              originality: 2, resilience: 7 },
+    traits: {
+      curiosity: 3, isolation: 5, risk: 2, discipline: 9, perfectionism: 3,
+      leadership: 6, sacrifice: 3, ambition: 5, strategy: 10, emotion: 1,
+      originality: 2, resilience: 7
+    },
     core: ["strategy", "discipline"]
   },
   musk: {
@@ -89,9 +101,11 @@ const FIGURES = {
     neg: "Chaotic personal wake, demanding the unreasonable from others",
     desc: "You want to fix the problems everyone else agreed were unsolvable. You move at a speed that disorients people around you, and you have a habit of declaring things possible before you've fully checked the math. Your best ideas and your biggest messes come from exactly the same place.",
     fact: "When SpaceX nearly ran out of money in 2008, Musk put his last personal reserves into a fourth rocket launch rather than accept failure, it succeeded. He has described running multiple companies simultaneously while barely sleeping as normal. Teams working under him report both breakthrough results and extreme psychological pressure.",
-    traits: { curiosity: 6, isolation: 2, risk: 9, discipline: 4, perfectionism: 4,
-              leadership: 6, sacrifice: 6, ambition: 8, strategy: 3, emotion: 2,
-              originality: 6, resilience: 7 },
+    traits: {
+      curiosity: 6, isolation: 2, risk: 9, discipline: 4, perfectionism: 4,
+      leadership: 6, sacrifice: 6, ambition: 8, strategy: 3, emotion: 2,
+      originality: 6, resilience: 7
+    },
     core: ["risk", "ambition"]
   },
   napoleon: {
@@ -101,9 +115,11 @@ const FIGURES = {
     neg: "Ego that overrides good judgment, pushing too far past the limit",
     desc: "You have always felt slightly outside the group that holds power, and instead of accepting that, you used it as fuel. You are not just trying to win; you are trying to redesign the whole system. Your strength is that you outthink people who are playing by rules you've already discarded. Your weakness is that you sometimes keep going long after the smart move was to stop.",
     fact: "Napoleon was Corsican, culturally French but never quite accepted as an insider by Parisian elites. He responded by outworking and outthinking every aristocrat in his path. He rewrote the legal code of France, reorganized its education system, and restructured its banking, all while running military campaigns. He fell not from lack of genius but from an inability to accept that Moscow was a limit.",
-    traits: { curiosity: 3, isolation: 2, risk: 6, discipline: 6, perfectionism: 3,
-              leadership: 8, sacrifice: 4, ambition: 10, strategy: 8, emotion: 3,
-              originality: 4, resilience: 7 },
+    traits: {
+      curiosity: 3, isolation: 2, risk: 6, discipline: 6, perfectionism: 3,
+      leadership: 8, sacrifice: 4, ambition: 10, strategy: 8, emotion: 3,
+      originality: 4, resilience: 7
+    },
     core: ["ambition", "strategy"]
   },
   curie: {
@@ -113,9 +129,11 @@ const FIGURES = {
     neg: "Sacrificing personal health and relationships for the work",
     desc: "You don't make noise about what you're doing. You just keep going through rejection, through doubt, and through conditions that would make most people quit. You are not trying to impress anyone. You are trying to get it right. The risk is that you push so deep into the work that everything else, including rest, relationships, and your own body, becomes secondary.",
     fact: "Curie was the first person ever to win two Nobel Prizes in two different sciences, physics and chemistry. She had to conduct her research in a leaking shed with no proper heating because no French university would give a woman proper lab space. She carried radioactive isotopes in her coat pockets for years. The radiation killed her, and her notebooks are still too radioactive to handle without protective equipment.",
-    traits: { curiosity: 6, isolation: 6, risk: 2, discipline: 9, perfectionism: 5,
-              leadership: 1, sacrifice: 10, ambition: 3, strategy: 4, emotion: 2,
-              originality: 4, resilience: 10 },
+    traits: {
+      curiosity: 6, isolation: 6, risk: 2, discipline: 9, perfectionism: 5,
+      leadership: 1, sacrifice: 10, ambition: 3, strategy: 4, emotion: 2,
+      originality: 4, resilience: 10
+    },
     core: ["sacrifice", "resilience"]
   },
   jobs: {
@@ -125,9 +143,11 @@ const FIGURES = {
     neg: "Brutal to people around him, blind spots in personal relationships",
     desc: "You believe that how something looks and feels is just as important as whether it works, and you hold that standard for everything you touch. You don't tolerate the gap between your vision and the reality in front of you. People either rise to meet your standard or get moved out of the way. The cost of that is real, and the people who paid it weren't always the ones who deserved to.",
     fact: "Jobs was notoriously controlling about details most people consider invisible, like the color of internal circuit boards no customer would ever see, or the exact radius of the corners on product packaging. Former Apple employees described his feedback style as either this is the greatest thing or this is absolute garbage with no middle ground. He also denied paternity of his first daughter for years while simultaneously naming a product line after her.",
-    traits: { curiosity: 4, isolation: 3, risk: 5, discipline: 5, perfectionism: 10,
-              leadership: 7, sacrifice: 5, ambition: 6, strategy: 4, emotion: 3,
-              originality: 8, resilience: 6 },
+    traits: {
+      curiosity: 4, isolation: 3, risk: 5, discipline: 5, perfectionism: 10,
+      leadership: 7, sacrifice: 5, ambition: 6, strategy: 4, emotion: 3,
+      originality: 8, resilience: 6
+    },
     core: ["perfectionism", "originality"]
   }
 };
@@ -146,7 +166,7 @@ const FIGURES = {
 const POOL = [
   // ISOLATION / FOCUS
   {
-    tags: ["isolation","focus"],
+    tags: ["isolation", "focus"],
     q: "You need to finish something really important. Where do you work best?",
     a: [
       "Alone in a quiet room with the door shut.",
@@ -160,7 +180,7 @@ const POOL = [
     ]
   },
   {
-    tags: ["isolation","trust"],
+    tags: ["isolation", "trust"],
     q: "Something goes wrong. What do you do first?",
     a: [
       "Go somewhere quiet and sort it out by myself.",
@@ -174,7 +194,7 @@ const POOL = [
     ]
   },
   {
-    tags: ["isolation","recharge"],
+    tags: ["isolation", "recharge"],
     q: "After a long and stressful week, what actually makes you feel better?",
     a: [
       "Being completely alone with no messages, no people, and just quiet.",
@@ -190,7 +210,7 @@ const POOL = [
 
   // CURIOSITY
   {
-    tags: ["curiosity","distraction"],
+    tags: ["curiosity", "distraction"],
     q: "You are reading a book and it mentions a strange animal you have never heard of. What do you do?",
     a: [
       "Put the book down and spend an hour reading about the animal.",
@@ -204,7 +224,7 @@ const POOL = [
     ]
   },
   {
-    tags: ["curiosity","breadth"],
+    tags: ["curiosity", "breadth"],
     q: "You are deep into a hobby you love. Then you discover a completely different one that also seems amazing. What happens?",
     a: [
       "I drop the first one because the new thing is more exciting right now.",
@@ -218,7 +238,7 @@ const POOL = [
     ]
   },
   {
-    tags: ["curiosity","depth"],
+    tags: ["curiosity", "depth"],
     q: "You understand how something works. Most people would move on. What do you do?",
     a: [
       "Keep going deeper because there is always something underneath the explanation.",
@@ -234,7 +254,7 @@ const POOL = [
 
   // RISK / ACTION
   {
-    tags: ["recklessness","action"],
+    tags: ["recklessness", "action"],
     q: "You are running late. There is a shortcut but a real chance it gets you completely lost. What do you do?",
     a: [
       "Take it. If I get lost, I will figure it out.",
@@ -248,7 +268,7 @@ const POOL = [
     ]
   },
   {
-    tags: ["recklessness","stakes"],
+    tags: ["recklessness", "stakes"],
     q: "You saved up money for a whole year. Someone offers you the chance to double it, but you could also lose everything. Do you take it?",
     a: [
       "Yes. I have thought it through and am taking the bet.",
@@ -262,7 +282,7 @@ const POOL = [
     ]
   },
   {
-    tags: ["action","speed"],
+    tags: ["action", "speed"],
     q: "You have a plan that is 80% ready. Someone says wait until it is perfect. What do you do?",
     a: [
       "Start now. I will fix the other 20% while I move.",
@@ -278,7 +298,7 @@ const POOL = [
 
   // SACRIFICE / OBSESSION
   {
-    tags: ["sacrifice","obsession"],
+    tags: ["sacrifice", "obsession"],
     q: "Would you keep working on something you really care about, even if it was making you physically sick?",
     a: [
       "Yes. The work matters more than how I feel right now.",
@@ -292,7 +312,7 @@ const POOL = [
     ]
   },
   {
-    tags: ["sacrifice","relationships"],
+    tags: ["sacrifice", "relationships"],
     q: "You are deep in a project you care about. A good friend calls and genuinely needs help. What do you do?",
     a: [
       "Keep working. They will understand.",
@@ -306,7 +326,7 @@ const POOL = [
     ]
   },
   {
-    tags: ["sacrifice","obsession","craft"],
+    tags: ["sacrifice", "obsession", "craft"],
     q: "You have been practising the same thing for eight hours and you still think it is not right. What do you do?",
     a: [
       "Keep going. I will not stop until it feels right.",
@@ -322,7 +342,7 @@ const POOL = [
 
   // PERFECTIONISM / CRAFT
   {
-    tags: ["perfectionism","idealism"],
+    tags: ["perfectionism", "idealism"],
     q: "You are building a sandcastle. The sun is setting and it is time to leave, but the castle is not perfect. What do you do?",
     a: [
       "Stay and fix it in the dark. It has to look right.",
@@ -336,7 +356,7 @@ const POOL = [
     ]
   },
   {
-    tags: ["perfectionism","standards"],
+    tags: ["perfectionism", "standards"],
     q: "You finish something and it looks good, but you know you could do better. What do you do?",
     a: [
       "Start over from scratch.",
@@ -350,7 +370,7 @@ const POOL = [
     ]
   },
   {
-    tags: ["perfectionism","visibility"],
+    tags: ["perfectionism", "visibility"],
     q: "You spend two weeks on something no one will ever actually see, like the hidden inside of a product. Does that bother you?",
     a: [
       "No. If I know it is messy inside, I cannot leave it that way.",
@@ -366,7 +386,7 @@ const POOL = [
 
   // DISCIPLINE / METHOD
   {
-    tags: ["discipline","method"],
+    tags: ["discipline", "method"],
     q: "You want to learn how to play the piano. How do you start?",
     a: [
       "Same basic exercises every single day until they are automatic.",
@@ -380,7 +400,7 @@ const POOL = [
     ]
   },
   {
-    tags: ["discipline","routine"],
+    tags: ["discipline", "routine"],
     q: "You have a goal that will take two years. Which approach sounds most like you?",
     a: [
       "The same routine every day with no shortcuts and no breaks.",
@@ -396,7 +416,7 @@ const POOL = [
 
   // LEADERSHIP / CONTROL
   {
-    tags: ["leadership","control"],
+    tags: ["leadership", "control"],
     q: "You and your friends are lost in the woods and everyone is arguing. What do you do?",
     a: [
       "Tell everyone to stop talking and declare which way we are going.",
@@ -410,7 +430,7 @@ const POOL = [
     ]
   },
   {
-    tags: ["leadership","ego"],
+    tags: ["leadership", "ego"],
     q: "The group voted on a plan you are certain is wrong. What do you do?",
     a: [
       "Push hard to change their minds. I know I am right.",
@@ -424,7 +444,7 @@ const POOL = [
     ]
   },
   {
-    tags: ["leadership","loyalty"],
+    tags: ["leadership", "loyalty"],
     q: "Someone on your team keeps making mistakes. What do you do?",
     a: [
       "Give them one direct conversation. If it keeps happening, they are out.",
@@ -440,7 +460,7 @@ const POOL = [
 
   // STRATEGY / PATIENCE
   {
-    tags: ["strategy","manipulation"],
+    tags: ["strategy", "manipulation"],
     q: "Someone changes the rules of a game right before you are about to win. What do you do?",
     a: [
       "Figure out how to beat them using their own new rules.",
@@ -454,7 +474,7 @@ const POOL = [
     ]
   },
   {
-    tags: ["patience","long-game"],
+    tags: ["patience", "long-game"],
     q: "You planted a seed that will take two years to grow. What do you do while you wait?",
     a: [
       "Check on it every day and keep everything perfect for it.",
@@ -468,7 +488,7 @@ const POOL = [
     ]
   },
   {
-    tags: ["strategy","observation"],
+    tags: ["strategy", "observation"],
     q: "You walk into a party where you do not know anyone. What do you actually do?",
     a: [
       "Find a quiet spot and watch. I learn more by observing first.",
@@ -484,7 +504,7 @@ const POOL = [
 
   // OUTSIDER / AMBITION
   {
-    tags: ["ambition","outsider"],
+    tags: ["ambition", "outsider"],
     q: "You are the only person in the room who was not invited. Everyone else clearly belongs there. What do you do?",
     a: [
       "Act like I belong anyway. I will earn my place while I am here.",
@@ -498,7 +518,7 @@ const POOL = [
     ]
   },
   {
-    tags: ["ambition","drive"],
+    tags: ["ambition", "drive"],
     q: "You just won something big. What is your first thought?",
     a: [
       "What is the next, harder thing I can go after?",
@@ -512,7 +532,7 @@ const POOL = [
     ]
   },
   {
-    tags: ["ambition","resistance"],
+    tags: ["ambition", "resistance"],
     q: "People keep telling you that what you are trying to do is impossible. How does that affect you?",
     a: [
       "It makes me more determined. Doubt is just noise.",
@@ -528,7 +548,7 @@ const POOL = [
 
   // VISION / ORIGINALITY
   {
-    tags: ["vision","originality"],
+    tags: ["vision", "originality"],
     q: "You have a brilliant idea no one has ever tried before. What is your first instinct?",
     a: [
       "Spend weeks developing it quietly before showing anyone.",
@@ -542,7 +562,7 @@ const POOL = [
     ]
   },
   {
-    tags: ["vision","compromise"],
+    tags: ["vision", "compromise"],
     q: "Someone offers to make your idea famous, but only if you change the most important part of it. What do you do?",
     a: [
       "Refuse. I would rather it stays unknown than become something it is not.",
@@ -558,7 +578,7 @@ const POOL = [
 
   // EMOTIONAL / ESCAPE
   {
-    tags: ["escape","emotion"],
+    tags: ["escape", "emotion"],
     q: "The real world feels overwhelming. What actually helps?",
     a: [
       "Disappearing into something creative like music, art, or building.",
@@ -572,7 +592,7 @@ const POOL = [
     ]
   },
   {
-    tags: ["emotion","expression"],
+    tags: ["emotion", "expression"],
     q: "You feel something very strongly but nobody around you seems to care. What do you do?",
     a: [
       "Put that feeling into whatever I am making.",
@@ -586,7 +606,7 @@ const POOL = [
     ]
   },
   {
-    tags: ["emotion","trust"],
+    tags: ["emotion", "trust"],
     q: "Someone you trusted completely let you down. How do you respond?",
     a: [
       "Withdraw. I become much more careful about who gets close to me.",
@@ -602,7 +622,7 @@ const POOL = [
 
   // SYSTEMS / BIG PICTURE
   {
-    tags: ["systems","big-picture"],
+    tags: ["systems", "big-picture"],
     q: "You notice a small problem that everyone else is walking past. What do you do?",
     a: [
       "Watch it carefully. Small things become big things if you ignore them.",
@@ -616,7 +636,7 @@ const POOL = [
     ]
   },
   {
-    tags: ["systems","planning"],
+    tags: ["systems", "planning"],
     q: "You are organising something big. What does your process actually look like?",
     a: [
       "I map out every step and every possible failure point before I move.",
@@ -632,7 +652,7 @@ const POOL = [
 
   // FINISHING / FOLLOW-THROUGH
   {
-    tags: ["finishing","follow-through"],
+    tags: ["finishing", "follow-through"],
     q: "You are halfway through a project when a clearly better idea shows up. What do you do?",
     a: [
       "Drop the current one because the better idea is the point.",
@@ -646,7 +666,7 @@ const POOL = [
     ]
   },
   {
-    tags: ["finishing","accountability"],
+    tags: ["finishing", "accountability"],
     q: "You made a commitment to something. Life gets complicated and it is easier to back out. What do you do?",
     a: [
       "Honour it no matter what. I said I would, so I will.",
@@ -667,30 +687,30 @@ const POOL = [
 // main round. Each answer gives a strong, targeted trait push.
 
 const CONTRAST = {
-  einstein_tesla:     { q: "You just had a breakthrough idea. What do you do first?", a: ["Write down the equations to prove it is actually true.", "Draw a picture of exactly what it will look like when it exists."], fx: [{ curiosity: 5, strategy: 2 }, { originality: 5, isolation: 2 }] },
-  einstein_curie:     { q: "What keeps you going when a problem gets very hard?", a: ["Pure curiosity. I just need to understand it.", "The thought of what solving it will change for other people."], fx: [{ curiosity: 5, isolation: 1 }, { sacrifice: 5, resilience: 2 }] },
-  einstein_vinci:     { q: "Your biggest problem is:", a: ["I focus so hard on one thing that I forget everything else exists.", "I get excited by every new thing and never quite finish the last one."], fx: [{ curiosity: 3, isolation: 4, discipline: 2 }, { curiosity: 4, discipline: -4 }] },
-  einstein_franklin:  { q: "You are trying to understand something difficult. What is the real goal?", a: ["Understanding it fully, for its own sake.", "Understanding it well enough to actually use it."], fx: [{ curiosity: 5, isolation: 2 }, { strategy: 4, curiosity: 2, isolation: -3 }] },
-  tesla_jackson:      { q: "What matters more to you?", a: ["That what I made has never been done before.", "That what I made makes people actually feel something."], fx: [{ originality: 5, isolation: 2 }, { emotion: 5, perfectionism: 2 }] },
-  tesla_vinci:        { q: "You have a huge creative idea. What is the problem?", a: ["The world is not ready for it and probably never will be.", "I already have twelve other ideas I have not finished."], fx: [{ originality: 5, isolation: 2 }, { curiosity: 5, discipline: -3 }] },
-  tesla_curie:        { q: "You are working alone on something nobody understands yet. What are you?", a: ["Certain. I can already see it working perfectly in my mind.", "Determined. I will keep going until the results speak for themselves."], fx: [{ originality: 5, perfectionism: 2 }, { sacrifice: 5, resilience: 3 }] },
-  tesla_franklin:     { q: "You have an idea nobody has tried before. What matters most?", a: ["That it stays exactly as pure as it was in my head.", "That I can actually build a working version of it."], fx: [{ originality: 5, isolation: 2 }, { strategy: 4, curiosity: 2 }] },
-  jackson_jobs:       { q: "Why does it have to be perfect?", a: ["Because anything less is a betrayal of what the art is supposed to be.", "Because anything less is an insult to the person who is going to use it."], fx: [{ emotion: 5, perfectionism: 2 }, { perfectionism: 5, leadership: 2 }] },
-  jackson_curie:      { q: "You gave everything to the work. What actually drove you?", a: ["I had to make something beautiful enough to match what I felt inside.", "I just had to find the answer. Stopping was never really an option."], fx: [{ emotion: 5, perfectionism: 2 }, { resilience: 5, sacrifice: 3 }] },
-  vinci_musk:         { q: "You love new ideas. But what actually happens to them?", a: ["Most live in notebooks. I explore them but rarely finish.", "Most get built fast, messy, imperfect, but real."], fx: [{ curiosity: 5, discipline: -3 }, { risk: 5, ambition: 2 }] },
-  vinci_franklin:     { q: "You start ten interesting projects. What happens to them?", a: ["Most stay unfinished. The exploring was the point.", "I try to steer them somewhere useful, even if it takes years."], fx: [{ curiosity: 5, discipline: -4 }, { discipline: 4, strategy: 3 }] },
-  napoleon_musk:      { q: "You are taking an enormous risk. What is the real reason?", a: ["Nobody else was going to fix this, so I had to.", "If it works, nobody will ever question me again."], fx: [{ risk: 4, ambition: 3 }, { ambition: 5, resilience: 2 }] },
-  napoleon_franklin:  { q: "You were never fully accepted by the people at the top. What did you do about it?", a: ["Outworked and outthought every single one of them until I could not be ignored.", "Built my own path and my own circle instead of chasing theirs."], fx: [{ ambition: 5, strategy: 3 }, { strategy: 3, discipline: 3, isolation: -2 }] },
+  einstein_tesla: { q: "You just had a breakthrough idea. What do you do first?", a: ["Write down the equations to prove it is actually true.", "Draw a picture of exactly what it will look like when it exists."], fx: [{ curiosity: 5, strategy: 2 }, { originality: 5, isolation: 2 }] },
+  einstein_curie: { q: "What keeps you going when a problem gets very hard?", a: ["Pure curiosity. I just need to understand it.", "The thought of what solving it will change for other people."], fx: [{ curiosity: 5, isolation: 1 }, { sacrifice: 5, resilience: 2 }] },
+  einstein_vinci: { q: "Your biggest problem is:", a: ["I focus so hard on one thing that I forget everything else exists.", "I get excited by every new thing and never quite finish the last one."], fx: [{ curiosity: 3, isolation: 4, discipline: 2 }, { curiosity: 4, discipline: -4 }] },
+  einstein_franklin: { q: "You are trying to understand something difficult. What is the real goal?", a: ["Understanding it fully, for its own sake.", "Understanding it well enough to actually use it."], fx: [{ curiosity: 5, isolation: 2 }, { strategy: 4, curiosity: 2, isolation: -3 }] },
+  tesla_jackson: { q: "What matters more to you?", a: ["That what I made has never been done before.", "That what I made makes people actually feel something."], fx: [{ originality: 5, isolation: 2 }, { emotion: 5, perfectionism: 2 }] },
+  tesla_vinci: { q: "You have a huge creative idea. What is the problem?", a: ["The world is not ready for it and probably never will be.", "I already have twelve other ideas I have not finished."], fx: [{ originality: 5, isolation: 2 }, { curiosity: 5, discipline: -3 }] },
+  tesla_curie: { q: "You are working alone on something nobody understands yet. What are you?", a: ["Certain. I can already see it working perfectly in my mind.", "Determined. I will keep going until the results speak for themselves."], fx: [{ originality: 5, perfectionism: 2 }, { sacrifice: 5, resilience: 3 }] },
+  tesla_franklin: { q: "You have an idea nobody has tried before. What matters most?", a: ["That it stays exactly as pure as it was in my head.", "That I can actually build a working version of it."], fx: [{ originality: 5, isolation: 2 }, { strategy: 4, curiosity: 2 }] },
+  jackson_jobs: { q: "Why does it have to be perfect?", a: ["Because anything less is a betrayal of what the art is supposed to be.", "Because anything less is an insult to the person who is going to use it."], fx: [{ emotion: 5, perfectionism: 2 }, { perfectionism: 5, leadership: 2 }] },
+  jackson_curie: { q: "You gave everything to the work. What actually drove you?", a: ["I had to make something beautiful enough to match what I felt inside.", "I just had to find the answer. Stopping was never really an option."], fx: [{ emotion: 5, perfectionism: 2 }, { resilience: 5, sacrifice: 3 }] },
+  vinci_musk: { q: "You love new ideas. But what actually happens to them?", a: ["Most live in notebooks. I explore them but rarely finish.", "Most get built fast, messy, imperfect, but real."], fx: [{ curiosity: 5, discipline: -3 }, { risk: 5, ambition: 2 }] },
+  vinci_franklin: { q: "You start ten interesting projects. What happens to them?", a: ["Most stay unfinished. The exploring was the point.", "I try to steer them somewhere useful, even if it takes years."], fx: [{ curiosity: 5, discipline: -4 }, { discipline: 4, strategy: 3 }] },
+  napoleon_musk: { q: "You are taking an enormous risk. What is the real reason?", a: ["Nobody else was going to fix this, so I had to.", "If it works, nobody will ever question me again."], fx: [{ risk: 4, ambition: 3 }, { ambition: 5, resilience: 2 }] },
+  napoleon_franklin: { q: "You were never fully accepted by the people at the top. What did you do about it?", a: ["Outworked and outthought every single one of them until I could not be ignored.", "Built my own path and my own circle instead of chasing theirs."], fx: [{ ambition: 5, strategy: 3 }, { strategy: 3, discipline: 3, isolation: -2 }] },
   rockefeller_napoleon: { q: "Someone is in your way. How do you actually deal with them?", a: ["Outlast them. Wait for them to make a mistake, then move.", "Outmanoeuvre them. Hit them from a direction they are not watching."], fx: [{ strategy: 5, discipline: 2 }, { ambition: 5, strategy: 2 }] },
-  rockefeller_curie:  { q: "You are playing a very long game. What keeps you patient?", a: ["I can already see exactly how it ends. The plan is clear.", "I just take the next step. I do not need to see the whole path at once."], fx: [{ strategy: 5, discipline: 2 }, { sacrifice: 5, resilience: 3 }] },
+  rockefeller_curie: { q: "You are playing a very long game. What keeps you patient?", a: ["I can already see exactly how it ends. The plan is clear.", "I just take the next step. I do not need to see the whole path at once."], fx: [{ strategy: 5, discipline: 2 }, { sacrifice: 5, resilience: 3 }] },
   rockefeller_einstein: { q: "You are watching something everyone else is ignoring. Why?", a: ["Because I can already see the opportunity inside it.", "Because I want to understand it before I decide what to do."], fx: [{ strategy: 5, ambition: 2 }, { curiosity: 5, isolation: 2 }] },
   rockefeller_franklin: { q: "What matters more when you are building something long-term?", a: ["Controlling the whole system so nothing is left to chance.", "Staying curious and adaptable, even if that means less control."], fx: [{ strategy: 4, discipline: 3, emotion: -2 }, { curiosity: 4, strategy: 3, isolation: -2 }] },
-  musk_napoleon:      { q: "You are moving fast and people around you cannot keep up. What do you think?", a: ["I do not slow down. The mission matters more.", "I find the right people who can match the pace. Then I go faster."], fx: [{ risk: 5, ambition: 2 }, { ambition: 4, leadership: 3 }] },
-  jobs_napoleon:      { q: "People are pushing back against your vision. What do you do?", a: ["Refuse to compromise. The vision is right and they will see it eventually.", "Find a smarter way to bring them along without them realising you already won."], fx: [{ perfectionism: 5, originality: 2 }, { ambition: 4, strategy: 3 }] },
-  jobs_rockefeller:   { q: "What matters more at the end?", a: ["That it was beautiful and exactly what it should have been.", "That it worked and the numbers proved it."], fx: [{ perfectionism: 5, originality: 2 }, { strategy: 5, discipline: 2 }] },
-  jobs_franklin:      { q: "Something you made is functional but not beautiful. What is your reaction?", a: ["Unacceptable. It has to be right, even if it costs time and people.", "Fine for now. I will refine it once I know it actually works."], fx: [{ perfectionism: 5, leadership: 2 }, { strategy: 4, discipline: 2, perfectionism: -2 }] },
-  curie_einstein:     { q: "You keep working alone when everyone else has stopped. Why?", a: ["Because I have not found the answer yet and I need to.", "Because I am not done thinking yet."], fx: [{ sacrifice: 5, resilience: 2 }, { curiosity: 5, isolation: 2 }] },
-  curie_franklin:     { q: "Progress is painfully slow. How do you keep going?", a: ["I do not need it to feel good. I need it to be right, whatever it costs me.", "I adjust my method and try again because there is usually a better way through."], fx: [{ sacrifice: 5, resilience: 3 }, { strategy: 4, curiosity: 2 }] }
+  musk_napoleon: { q: "You are moving fast and people around you cannot keep up. What do you think?", a: ["I do not slow down. The mission matters more.", "I find the right people who can match the pace. Then I go faster."], fx: [{ risk: 5, ambition: 2 }, { ambition: 4, leadership: 3 }] },
+  jobs_napoleon: { q: "People are pushing back against your vision. What do you do?", a: ["Refuse to compromise. The vision is right and they will see it eventually.", "Find a smarter way to bring them along without them realising you already won."], fx: [{ perfectionism: 5, originality: 2 }, { ambition: 4, strategy: 3 }] },
+  jobs_rockefeller: { q: "What matters more at the end?", a: ["That it was beautiful and exactly what it should have been.", "That it worked and the numbers proved it."], fx: [{ perfectionism: 5, originality: 2 }, { strategy: 5, discipline: 2 }] },
+  jobs_franklin: { q: "Something you made is functional but not beautiful. What is your reaction?", a: ["Unacceptable. It has to be right, even if it costs time and people.", "Fine for now. I will refine it once I know it actually works."], fx: [{ perfectionism: 5, leadership: 2 }, { strategy: 4, discipline: 2, perfectionism: -2 }] },
+  curie_einstein: { q: "You keep working alone when everyone else has stopped. Why?", a: ["Because I have not found the answer yet and I need to.", "Because I am not done thinking yet."], fx: [{ sacrifice: 5, resilience: 2 }, { curiosity: 5, isolation: 2 }] },
+  curie_franklin: { q: "Progress is painfully slow. How do you keep going?", a: ["I do not need it to feel good. I need it to be right, whatever it costs me.", "I adjust my method and try again because there is usually a better way through."], fx: [{ sacrifice: 5, resilience: 3 }, { strategy: 4, curiosity: 2 }] }
 };
 
 // USER STATE
@@ -698,18 +718,18 @@ const CONTRAST = {
 // traitEvidence tracks how many times each trait was touched,
 // used to decide when we have enough signal to trust a core-trait check.
 
-let userTraits    = {};
+let userTraits = {};
 let traitEvidence = {};
 
 function resetTraitState() {
-  userTraits    = {};
+  userTraits = {};
   traitEvidence = {};
   for (const t of TRAITS) { userTraits[t] = 0; traitEvidence[t] = 0; }
 }
 
 function applyDeltas(deltas) {
   for (const t in deltas) {
-    userTraits[t]    = (userTraits[t] || 0) + deltas[t];
+    userTraits[t] = (userTraits[t] || 0) + deltas[t];
     traitEvidence[t] = (traitEvidence[t] || 0) + 1;
   }
 }
@@ -741,8 +761,8 @@ function normalizedUserVector() {
 
 const CORE_WEIGHT = 2.2;   // core traits count more toward distance
 const CORE_PENALTY_FLOOR = 0.35; // if user is below this fraction of a
-                                   // core trait's expected level, apply
-                                   // a multiplicative confidence penalty
+// core trait's expected level, apply
+// a multiplicative confidence penalty
 
 function computeMatchScores() {
   const uv = normalizedUserVector();
@@ -829,9 +849,9 @@ function getConfidence(sortedEntries, questionsAnswered) {
   pct = Math.max(pct, 12);
 
   const label = pct >= 80 ? "Strong match"
-              : pct >= 60 ? "Clear match"
-              : pct >= 40 ? "Likely match"
-              :             "Partial match";
+    : pct >= 60 ? "Clear match"
+      : pct >= 40 ? "Likely match"
+        : "Partial match";
   return { pct, label };
 }
 
@@ -885,7 +905,7 @@ function estimateSeparation(question, topKeys) {
 
 function selectNextQ(usedQSet) {
   const topKeys = getTopFigures(3);
-  const unused  = POOL.filter(q => !usedQSet.has(q.q));
+  const unused = POOL.filter(q => !usedQSet.has(q.q));
   if (!unused.length) return null;
 
   if (!topKeys.length) {
@@ -894,8 +914,8 @@ function selectNextQ(usedQSet) {
 
   const scored = unused.map(q => {
     const separation = estimateSeparation(q, topKeys);
-    const tagDupe     = q.tags.filter(t => usedTags.has(t)).length;
-    const noise       = Math.random() * 2; // small tie-breaking jitter
+    const tagDupe = q.tags.filter(t => usedTags.has(t)).length;
+    const noise = Math.random() * 2; // small tie-breaking jitter
     return { q, score: separation - tagDupe * 1.5 + noise };
   }).sort((a, b) => b.score - a.score);
 
@@ -903,17 +923,17 @@ function selectNextQ(usedQSet) {
 }
 // Tracking :)
 async function trackDeviceVisit() {
-  if (["localhost","127.0.0.1"].includes(window.location.hostname)) return;
+  if (["localhost", "127.0.0.1"].includes(window.location.hostname)) return;
   try {
     await fetch('/api/track', {
-      method:  'POST',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         screen_resolution: `${window.screen.width}x${window.screen.height}`,
-        user_agent:        navigator.userAgent
+        user_agent: navigator.userAgent
       })
     });
-  } catch {}
+  } catch { }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -1024,11 +1044,11 @@ function initFloatingProfiles() {
 // Quiz State
 
 
-let activeQs      = [];
-let snapshots     = [];   // snapshot of userTraits + traitEvidence per step, for "back"
-let usedTags      = new Set();
-let currentIdx    = 0;
-let isRefinement  = false;
+let activeQs = [];
+let snapshots = [];   // snapshot of userTraits + traitEvidence per step, for "back"
+let usedTags = new Set();
+let currentIdx = 0;
+let isRefinement = false;
 let sortedResults = [];   // [ [figureKey, score], ... ] sorted desc
 
 const TOTAL_QS = 9;
@@ -1051,16 +1071,16 @@ function startQuiz() {
 
 function beginQuiz() {
   resetTraitState();
-  activeQs      = [];
-  snapshots     = [];
-  usedTags      = new Set();
-  currentIdx    = 0;
-  isRefinement  = false;
+  activeQs = [];
+  snapshots = [];
+  usedTags = new Set();
+  currentIdx = 0;
+  isRefinement = false;
   sortedResults = [];
 
-  const seedTags  = ["curiosity", "leadership", "sacrifice", "recklessness", "perfectionism", "discipline"];
-  const seedPool  = POOL.filter(q => q.tags.some(t => seedTags.includes(t)));
-  const shuffled  = [...seedPool].sort(() => Math.random() - 0.5);
+  const seedTags = ["curiosity", "leadership", "sacrifice", "recklessness", "perfectionism", "discipline"];
+  const seedPool = POOL.filter(q => q.tags.some(t => seedTags.includes(t)));
+  const shuffled = [...seedPool].sort(() => Math.random() - 0.5);
 
   const seeds = [];
   const seenT = new Set();
@@ -1080,26 +1100,26 @@ function beginQuiz() {
 
 // Render
 function renderQuestion() {
-  const q     = activeQs[currentIdx];
+  const q = activeQs[currentIdx];
   const total = isRefinement ? activeQs.length : TOTAL_QS;
-  const pct   = isRefinement ? 100 : (currentIdx / total) * 100;
+  const pct = isRefinement ? 100 : (currentIdx / total) * 100;
 
-  document.getElementById('progress-bar').style.width   = `${pct}%`;
+  document.getElementById('progress-bar').style.width = `${pct}%`;
   document.getElementById('progress-label').textContent = isRefinement
     ? "Final question"
     : `Question ${currentIdx + 1} of ${total}`;
 
-  document.getElementById('prev-btn').disabled       = currentIdx === 0 || isRefinement;
-  document.getElementById('next-btn').textContent    = "Skip →";
+  document.getElementById('prev-btn').disabled = currentIdx === 0 || isRefinement;
+  document.getElementById('next-btn').textContent = "Skip →";
   document.getElementById('question-text').textContent = q.q;
 
   const container = document.getElementById('options-container');
   container.innerHTML = '';
   q.a.forEach((text, i) => {
     const btn = document.createElement('button');
-    btn.className   = 'option-row-btn';
+    btn.className = 'option-row-btn';
     btn.textContent = text;
-    btn.onclick     = () => selectOption(i, q);
+    btn.onclick = () => selectOption(i, q);
     container.appendChild(btn);
   });
 }
@@ -1139,7 +1159,7 @@ function selectOption(idx, qObj) {
 function goToPrevQuestion() {
   if (currentIdx === 0 || isRefinement) return;
   if (snapshots[currentIdx]) {
-    userTraits    = { ...snapshots[currentIdx].traits };
+    userTraits = { ...snapshots[currentIdx].traits };
     traitEvidence = { ...snapshots[currentIdx].evidence };
     snapshots[currentIdx] = undefined;
   }
@@ -1177,8 +1197,8 @@ function checkForTies() {
     const key = findContrastKey(key1, key2);
     if (key) {
       isRefinement = true;
-      activeQs     = [CONTRAST[key]];
-      currentIdx   = 0;
+      activeQs = [CONTRAST[key]];
+      currentIdx = 0;
       renderQuestion();
       return;
     }
@@ -1188,18 +1208,18 @@ function checkForTies() {
 
 function findContrastKey(a, b) {
   return CONTRAST[`${a}_${b}`] ? `${a}_${b}`
-       : CONTRAST[`${b}_${a}`] ? `${b}_${a}`
-       : null;
+    : CONTRAST[`${b}_${a}`] ? `${b}_${a}`
+      : null;
 }
 
 // Results
 function showResults() {
-  document.getElementById('quiz-screen').style.display   = 'none';
+  document.getElementById('quiz-screen').style.display = 'none';
   document.getElementById('result-screen').style.display = 'block';
 
   const terminal = document.getElementById('terminal');
   terminal.style.display = 'block';
-  terminal.textContent   = '';
+  terminal.textContent = '';
 
   const logs = [
     "Analyzing behavior patterns...",
@@ -1234,7 +1254,7 @@ function calculateResult() {
   }
 
   const topKey = sortedResults[0][0];
-  const top    = FIGURES[topKey];
+  const top = FIGURES[topKey];
   trackCompletion(topKey, top.name);
   terminal.style.display = 'none';
   const rb = document.getElementById('archetype-result');
@@ -1244,34 +1264,34 @@ function calculateResult() {
 }
 
 async function trackCompletion(figureKey, figureName) {
-  if (["localhost","127.0.0.1"].includes(window.location.hostname)) return;
+  if (["localhost", "127.0.0.1"].includes(window.location.hostname)) return;
   try {
     await fetch('/api/complete', {
-      method:  'POST',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        figure_key:        figureKey,
-        figure_name:       figureName,
+        figure_key: figureKey,
+        figure_name: figureName,
         screen_resolution: `${window.screen.width}x${window.screen.height}`,
-        user_agent:        navigator.userAgent
+        user_agent: navigator.userAgent
       })
     });
-  } catch {}
+  } catch { }
 }
 
 function renderPhaseOne() {
   const topKey = sortedResults[0][0];
-  const top    = FIGURES[topKey];
+  const top = FIGURES[topKey];
   const { pct, label } = getConfidence(sortedResults, activeQs.length);
 
   const burstLines = Array.from({ length: 12 }, (_, i) => {
-    const a  = (i / 12) * 2 * Math.PI;
-    return `<line x1="${(80 + Math.cos(a)*54).toFixed(1)}" y1="${(80 + Math.sin(a)*54).toFixed(1)}" x2="${(80 + Math.cos(a)*74).toFixed(1)}" y2="${(80 + Math.sin(a)*74).toFixed(1)}" stroke="var(--accent)" stroke-width="1" opacity="0.25"/>`;
+    const a = (i / 12) * 2 * Math.PI;
+    return `<line x1="${(80 + Math.cos(a) * 54).toFixed(1)}" y1="${(80 + Math.sin(a) * 54).toFixed(1)}" x2="${(80 + Math.cos(a) * 74).toFixed(1)}" y2="${(80 + Math.sin(a) * 74).toFixed(1)}" stroke="var(--accent)" stroke-width="1" opacity="0.25"/>`;
   }).join('');
 
   const block = document.createElement('div');
   block.className = 'procedural-step-block';
-  block.id        = 'result-phase-1';
+  block.id = 'result-phase-1';
   block.innerHTML = `
     <div class="profile-identity-lockup">
       <div class="photo-burst-wrap" aria-hidden="true">
@@ -1295,10 +1315,10 @@ function renderPhaseOne() {
 function renderPhaseTwo() {
   document.querySelector('#result-phase-1 .action-trigger').style.display = 'none';
   const topKey = sortedResults[0][0];
-  const top    = FIGURES[topKey];
+  const top = FIGURES[topKey];
   const block = document.createElement('div');
   block.className = 'procedural-step-block';
-  block.id        = 'result-phase-2';
+  block.id = 'result-phase-2';
   block.innerHTML = `
     <p class="narrative-prose">${top.desc}</p>
     <div class="traits-minimal-grid">
@@ -1333,7 +1353,7 @@ function renderPhaseTwo() {
 function renderPhaseThree() {
   document.querySelector('#result-phase-2 .action-trigger').style.display = 'none';
   const topKey = sortedResults[0][0];
-  const top    = FIGURES[topKey];
+  const top = FIGURES[topKey];
   const block = document.createElement('div');
   block.className = 'procedural-step-block';
   block.innerHTML = `
@@ -1401,7 +1421,7 @@ async function handleShare(btn) {
         url: url
       });
       return;
-    } catch {}
+    } catch { }
   }
 
   try {
@@ -1421,6 +1441,6 @@ function resetQuiz() {
   document.getElementById('result-screen').style.display = 'none';
   const rb = document.getElementById('archetype-result');
   rb.style.display = 'none';
-  rb.innerHTML     = '';
+  rb.innerHTML = '';
   document.getElementById('intro-screen').style.display = 'block';
 }
