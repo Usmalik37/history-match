@@ -2,7 +2,7 @@
 
 **Answer a few questions. Find out which historical figure you think like.**
 
-History Match is a personality quiz web app that matches users to historical figures through a trait-vector scoring engine — built entirely from scratch with vanilla HTML, CSS, and JavaScript.
+History Match is a personality quiz web app that matches users to historical figures through a trait-vector scoring engine; built entirely from scratch with vanilla HTML, CSS, and JavaScript.
 
 ---
 
